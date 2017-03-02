@@ -2,9 +2,14 @@ package products;
 
 import main.Products;
 
-public class Oven extends Products{
+public abstract class Oven extends Products{
+	
+	enum OvenModel{GORENJE,BEKO,HANSA,WHIRLPOOL};
+	
+	protected OvenModel models;
 
-	public Oven(String name, String model, double price, int number) {
-		super(name, model, price, number, Categories.KITCHEN);
+	public Oven(String name, double price, int number,OvenModel models) {
+		super(name, price, number, Categories.KITCHEN);
+		this.models = models;
 	}
 }

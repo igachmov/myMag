@@ -1,9 +1,14 @@
 package products;
 
 import main.Products;
-public class Fridge extends Products{
+public abstract class Fridge extends Products{
+	
+	enum FridgeModel{WHIRLPOOL,PHILIPS,BEKO,INDESIT};
 
-	public Fridge(String name, String model, double price, int number) {
-		super(name, model, price, number, Categories.KITCHEN);
+	protected FridgeModel fridges;
+	
+	public Fridge(String name, double price, int number,FridgeModel fridges) {
+		super(name, price, number, Categories.KITCHEN);
+		this.fridges = fridges;
 	}
 }

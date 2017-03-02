@@ -2,11 +2,15 @@ package products;
 
 import main.Products;
 
-public class Laptops  extends Products{
+public abstract class Laptops extends Products{
+	
+	protected enum LaptopModel{LENOVO,HP,DELL,ASUS};
 
-	public Laptops(String name, String model, double price, int number) {
-		super(name, model, price, number, Categories.IT);
-		// TODO Auto-generated constructor stub
+	protected LaptopModel laptops;
+	
+	public Laptops(String name, double price, int number,LaptopModel laptops) {
+		super(name, price, number, Categories.IT);
+		this.laptops = laptops;
 	}
 
 }
