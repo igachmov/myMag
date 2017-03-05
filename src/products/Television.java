@@ -5,7 +5,7 @@ import main.Products.Saleable;
 
 public abstract class Television extends Products implements Saleable{
 	
-	enum TVModels{PANASONIC,LG,SAMSUNG,STARLIGHT};
+	enum TVModels implements Saleable{PANASONIC,LG,SAMSUNG,STARLIGHT};
 	
 	protected TVModels televisions;
 

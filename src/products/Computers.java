@@ -1,11 +1,10 @@
 package products;
 
 import main.Products;
-import main.Products.Saleable;
 
-public abstract class Computers extends Products implements Saleable{
+public  class Computers extends Products implements Comparable<Computers> {
 
-	protected enum ComputerModel {
+	public enum ComputerModel implements Saleable {
 		LENOVO, HP, DELL, ASUS
 	};
 
@@ -21,11 +20,23 @@ public abstract class Computers extends Products implements Saleable{
 			String operationSystem, int year) {
 		super(name, price, number, Categories.IT);
 		this.computers = computers;
-		this.ram = ram;
+		this.ram = ram;	
 		this.hardDisk = hardDisk;
 		this.processor = processor;
 		this.operationSystem = operationSystem;
 		this.year = year;
 	}
+	
+	@Override
+	public ComputerModel getSaleable() {
+		return this.computers;
+	}
+
+	@Override
+	public int compareTo(Computers arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

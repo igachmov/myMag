@@ -6,6 +6,8 @@ public class Admin {
 	private String password;
 	private String telNumber;
 	private String address;
+	private String email;
+	
 	public Admin(String name, String password, String telNumber, String address) {
 		this.name = name;
 		this.password = password;

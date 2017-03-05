@@ -7,7 +7,10 @@ public class Client {
 	private String address;
 	private String telNumber;
 	private String password;
+	private static int id;
 	
+	//history collection
+	//buy
 	
 	public Client(String name, String surname, String address,String telNumber, String password) {
 		this.name = name;
@@ -15,6 +18,14 @@ public class Client {
 		this.address = address;
 		this.telNumber = telNumber;
 		this.password = password;
+		
+		//addChart
+			//chechout buying
+		//search
+		//rate
+		
+		
+		
 	}
 	
 	

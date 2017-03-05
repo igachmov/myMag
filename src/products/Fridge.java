@@ -1,15 +1,26 @@
 package products;
 
 import main.Products;
-import main.Products.Saleable;
-public abstract class Fridge extends Products implements Saleable{
+public class Fridge extends Products implements Comparable<Fridge>{
 	
-	enum FridgeModel{WHIRLPOOL,PHILIPS,BEKO,INDESIT};
+	enum FridgeModel implements Saleable {WHIRLPOOL,PHILIPS,BEKO,INDESIT};
 
 	protected FridgeModel fridges;
 	
 	public Fridge(String name, double price, int number,FridgeModel fridges) {
 		super(name, price, number, Categories.KITCHEN);
 		this.fridges = fridges;
+	}
+
+	@Override
+	public int compareTo(Fridge arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Saleable getSaleable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
