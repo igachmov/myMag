@@ -1,5 +1,7 @@
 package main;
 
+import java.util.TreeSet;
+
 import main.Products.Product;
 
 
@@ -12,18 +14,24 @@ public abstract class Products {
 	
 	//collection for rates HashMap<User,int stars>
 	
+	
+	private static int idGen =1;
+	private final long ID;
+	
 	protected String name;
 	protected double price;
-	protected int number;
+	protected int amount;
 	protected Categories categories;
 	protected Product product;
 	
-	public Products(String name, double price, int number,Categories categories,Product product) {
+	public Products(String name, double price, int amount,Categories categories,Product product) {
 		this.name = name;
 		this.price = price;
-		this.number = number;
+		this.amount = amount;
 		this.categories = categories;
 		this.product = product;
+		idGen++;
+		ID=idGen;		
 	}
 
 	public Categories getCategory() {
@@ -36,8 +44,30 @@ public abstract class Products {
 
 	@Override
 	public String toString() {
-		return this.name+"---" +this.price+"----"+this.number;
+		if(this.amount == 0){
+			return "Out of stock";
+		}
+		return this.name+"---" +this.price+"----"+this.amount;
 	}
+	
+	public abstract Products clone();
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAmount() {
+		return this.amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	
+
+
+	
 	
 	
 	

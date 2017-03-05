@@ -15,9 +15,14 @@ public class Admin {
 		this.address = address;
 	}
 	
+	public void addProduct(Products product ){		
+		Catalog.getInstance().addCatalog(product);
+		
+	}
+	public void removeProduct(Products product){
+		Catalog.getInstance().removeFromCatalog(product);
+	}
 	
-	//da dobavq novi produkti
-	//da premahva produkti
 	//da priema poru4ki
 	
 	

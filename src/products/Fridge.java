@@ -7,8 +7,8 @@ public class Fridge extends Products implements Comparable<Fridge>{
 
 	protected FridgeModel fridges;
 	
-	public Fridge(String name, double price, int number,FridgeModel fridges) {
-		super(name, price, number, Categories.KITCHEN,Product.FRIDGE);
+	public Fridge(String name, double price, int amount,FridgeModel fridges) {
+		super(name, price, amount, Categories.KITCHEN,Product.FRIDGE);
 		this.fridges = fridges;
 	}
 

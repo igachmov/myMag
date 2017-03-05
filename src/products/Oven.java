@@ -10,8 +10,8 @@ public class Oven extends Products implements Comparable<Oven>{
 	
 	protected OvenModel models;
 
-	public Oven(String name, double price, int number,OvenModel models) {
-		super(name, price, number, Categories.KITCHEN,Product.OVEN);
+	public Oven(String name, double price, int amount,OvenModel models) {
+		super(name, price, amount, Categories.KITCHEN,Product.OVEN);
 		this.models = models;
 	}
 

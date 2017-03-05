@@ -6,7 +6,7 @@ import main.Products.Saleable;
 
 public class Laptops extends Products implements Comparable<Laptops> {
 
-	protected enum LaptopModel implements Saleable {
+	public enum LaptopModel implements Saleable {
 		LENOVO, HP, DELL, ASUS
 	};
 
@@ -17,11 +17,16 @@ public class Laptops extends Products implements Comparable<Laptops> {
 	protected String operationSystem;
 	protected int year;
 
-	public Laptops(String name, double price, int number, LaptopModel laptops,
+	public Laptops(String name, double price, int amount, LaptopModel laptops,
 			int ram, int hardDisk, String processor, String operationSystem,
 			int year) {
-		super(name, price, number, Categories.IT, Product.LAPTOP);
+		super(name, price, amount, Categories.IT, Product.LAPTOP);
 		this.laptops = laptops;
+		this.ram = ram;	
+		this.hardDisk = hardDisk;
+		this.processor = processor;
+		this.operationSystem = operationSystem;
+		this.year = year;
 	}
 
 	@Override
@@ -32,8 +37,7 @@ public class Laptops extends Products implements Comparable<Laptops> {
 
 	@Override
 	public Saleable getSaleable() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.laptops;
 	}
 
 }

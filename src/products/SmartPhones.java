@@ -11,8 +11,8 @@ public  class SmartPhones extends Products implements Comparable<SmartPhones>{
 
 	protected PhoneModel phones;
 	
-	public SmartPhones(String name, double price, int number,PhoneModel phones) {
-		super(name, price, number, Categories.MOBILES,Product.SMARTPHONE);
+	public SmartPhones(String name, double price, int amount,PhoneModel phones) {
+		super(name, price, amount, Categories.MOBILES,Product.SMARTPHONE);
 		this.phones = phones;
 	}
 
