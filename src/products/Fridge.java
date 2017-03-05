@@ -1,7 +1,8 @@
 package products;
 
 import main.Products;
-public abstract class Fridge extends Products{
+import main.Products.Saleable;
+public abstract class Fridge extends Products implements Saleable{
 	
 	enum FridgeModel{WHIRLPOOL,PHILIPS,BEKO,INDESIT};
 

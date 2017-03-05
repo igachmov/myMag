@@ -1,8 +1,9 @@
 package products;
 
 import main.Products;
+import main.Products.Saleable;
 
-public abstract class Oven extends Products{
+public abstract class Oven extends Products implements Saleable{
 	
 	enum OvenModel{GORENJE,BEKO,HANSA,WHIRLPOOL};
 	

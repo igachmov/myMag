@@ -14,5 +14,9 @@ public class Admin {
 	}
 	
 	
+	//da dobavq novi produkti
+	//da premahva produkti
+	//da priema poru4ki
+	
 	
 }

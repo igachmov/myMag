@@ -1,8 +1,9 @@
 package products;
 
 import main.Products;
+import main.Products.Saleable;
 
-public abstract class SmartPhones extends Products{
+public abstract class SmartPhones extends Products implements Saleable{
 	
 	
 	enum PhoneModel {HTC,APPLE,SAMSUNG,LENOVO};

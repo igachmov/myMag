@@ -1,8 +1,9 @@
 package products;
 
 import main.Products;
+import main.Products.Saleable;
 
-public abstract class Television extends Products{
+public abstract class Television extends Products implements Saleable{
 	
 	enum TVModels{PANASONIC,LG,SAMSUNG,STARLIGHT};
 	

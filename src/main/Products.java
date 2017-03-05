@@ -1,6 +1,8 @@
 package main;
 
 public abstract class Products {
+	
+	public interface Saleable{};
 
 	protected enum Categories{IT,KITCHEN,MOBILES};
 	

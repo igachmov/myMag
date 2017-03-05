@@ -1,8 +1,9 @@
 package products;
 
 import main.Products;
+import main.Products.Saleable;
 
-public abstract class Laptops extends Products{
+public abstract class Laptops extends Products implements Saleable{
 	
 	protected enum LaptopModel{LENOVO,HP,DELL,ASUS};
 
