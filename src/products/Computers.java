@@ -18,7 +18,7 @@ public  class Computers extends Products implements Comparable<Computers> {
 	public Computers(String name, double price, int number,
 			ComputerModel computers, int ram, int hardDisk, String processor,
 			String operationSystem, int year) {
-		super(name, price, number, Categories.IT);
+		super(name, price, number, Categories.IT,Product.COMPUTER);
 		this.computers = computers;
 		this.ram = ram;	
 		this.hardDisk = hardDisk;

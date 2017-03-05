@@ -1,6 +1,7 @@
 package products;
 
 import main.Products;
+import main.Products.Product;
 import main.Products.Saleable;
 
 public abstract class Television extends Products implements Saleable{
@@ -10,7 +11,7 @@ public abstract class Television extends Products implements Saleable{
 	protected TVModels televisions;
 
 	public Television(String name, double price, int number,TVModels televisions) {
-		super(name, price, number, Categories.IT);
+		super(name, price, number, Categories.IT,Product.TELEVISION);
 		this.televisions = televisions;
 	}
 }

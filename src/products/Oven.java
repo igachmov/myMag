@@ -1,6 +1,7 @@
 package products;
 
 import main.Products;
+import main.Products.Product;
 import main.Products.Saleable;
 
 public class Oven extends Products implements Comparable<Oven>{
@@ -10,7 +11,7 @@ public class Oven extends Products implements Comparable<Oven>{
 	protected OvenModel models;
 
 	public Oven(String name, double price, int number,OvenModel models) {
-		super(name, price, number, Categories.KITCHEN);
+		super(name, price, number, Categories.KITCHEN,Product.OVEN);
 		this.models = models;
 	}
 

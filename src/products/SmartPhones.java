@@ -1,6 +1,7 @@
 package products;
 
 import main.Products;
+import main.Products.Product;
 import main.Products.Saleable;
 
 public  class SmartPhones extends Products implements Comparable<SmartPhones>{
@@ -11,7 +12,7 @@ public  class SmartPhones extends Products implements Comparable<SmartPhones>{
 	protected PhoneModel phones;
 	
 	public SmartPhones(String name, double price, int number,PhoneModel phones) {
-		super(name, price, number, Categories.MOBILES);
+		super(name, price, number, Categories.MOBILES,Product.SMARTPHONE);
 		this.phones = phones;
 	}
 
