@@ -17,15 +17,15 @@ public class Admin {
 		this.address = address;
 	}
 	
-	public void addProduct(Product product ){		
-		Catalog.getInstance().addCatalog(product);
+	
+	
+	public void addProduct(Product product){		
+		Catalog.getInstance().addToCatalog(product);
 		
 	}
 	public void removeProduct(Product product){
 		Catalog.getInstance().removeFromCatalog(product);
 	}
-	
-	//da priema poru4ki
-	
+		
 	
 }

@@ -16,7 +16,7 @@ public class Laptop extends Product {
 			int ram, int hardDisk, String processor, String operationSystem,
 			int year) {
 		
-		super(name, price, amount, Categories.IT, ProductType.LAPTOP, brand);
+		super(name, price, amount, Category.IT, ProductType.LAPTOP, brand);
 
 		this.ram = ram;	
 		this.hardDisk = hardDisk;

@@ -1,29 +1,33 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
 import products.Product;
-import products.Product.Categories;
+import products.Product.Category;
 import products.Product.ProductType;
 import products.Product.IBrand;
 
 public class Catalog {
-	
-	private HashMap<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> catalog;
 
 	private static Catalog instance;
 
+	private HashMap<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> catalog;
+
 	private Catalog() {
 		catalog = new HashMap<>();
-		catalog.put(Categories.IT, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
-		catalog.put(Categories.KITCHEN, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
-		catalog.put(Categories.MOBILES, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
+		catalog.put(Category.IT, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
+		catalog.put(Category.KITCHEN, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
+		catalog.put(Category.MOBILES, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
 	}
 
+	/**
+	 * @return Singleton instance of Catalog
+	 */
 	public static Catalog getInstance() {
 		if (instance == null) {
 			instance = new Catalog();
@@ -32,58 +36,88 @@ public class Catalog {
 
 	}
 
+	/**
+	 * Iterates over the whole catalog collection and prints all items for which
+	 * the name starts with String from param. If not matches are found prints
+	 * appropriate message to console.
+	 * 
+	 * @param name
+	 *            - Product name to search for.
+	 */
 	public void searchInCatalog(String name) {
+		if (name == null || name.isEmpty())
+			return;
+
 		ArrayList<Product> matchingItems = new ArrayList<>();
-		
-		for (Entry<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
 
-			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
-
-				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
-
-					for (Product wo : e2.getValue()) {
-						if (wo.getName().contains(name)) {
+		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet())
+			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet())
+				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet())
+					for (Product wo : e2.getValue())
+						if (wo.getName().startsWith(name))
 							matchingItems.add(wo);
-						}
-					}
-				}
+
+		if (matchingItems.isEmpty()) {
+			System.out.println("Sorry. No items match search term.");
+			return;
+		}
+
+		// no lambdas in J1.7 :(
+		matchingItems.sort(new Comparator<Product>() {
+			@Override
+			public int compare(Product o1, Product o2) {
+				return o1.getName().compareToIgnoreCase(o2.getName());
 			}
+		});
 
-		for (Iterator itr = catalog.entrySet().iterator(); itr.hasNext();) {
-			
-			Product product = (Product) itr.next();
-			
-		}
-		
-			System.out.println(matchingItems);
-
-		}
+		System.out.println(matchingItems);
 
 	}
 
-	public void removeFromCatalog(Product prod) {
-		catalog.get(prod.getCategory()).get(prod.getProductType()).get(prod.getBrand()).remove(prod);
-
+	/**
+	 * Wraps java.util.TreeSet.remove(Object o) for specific use with the
+	 * catalog collection.
+	 * 
+	 * @param prod
+	 *            - Product instance, which to find and remove from catalog
+	 * @return true if product was present in catalog
+	 */
+	public boolean removeFromCatalog(Product prod) {
+		// TODO DANGEROUS .get(key) returns null if this map contains no mapping
+		// for the key => might throw NullPointerExeption!
+		return catalog.get(prod.getCategory()).get(prod.getProductType()).get(prod.getBrand()).remove(prod);
 	}
 
-	public void addCatalog(Product pro) {
-		Categories cat = pro.getCategory();
-		IBrand saleable = pro.getBrand();
-		ProductType prod = pro.getProductType();
+	/**
+	 * 
+	 * @param pro - Product instance which to add to catalog.
+	 * @return <b>true</b> if the catalog did NOT contain pro.
+	 *         <b>false</b> if element was already present or is null
+	 */
+	public boolean addToCatalog(Product pro) {
+
+		if (pro == null) 
+			return false;
+
+		Category cat = pro.getCategory();
+		IBrand brand = pro.getBrand();
+		ProductType prodType = pro.getProductType();
+
 		if (!catalog.containsKey(cat)) {
 			catalog.put(cat, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
 		}
-		if (!catalog.get(cat).containsKey(prod)) {
-			catalog.get(cat).put(prod, new HashMap<IBrand, TreeSet<Product>>());
+		if (!catalog.get(cat).containsKey(prodType)) {
+			catalog.get(cat).put(prodType, new HashMap<IBrand, TreeSet<Product>>());
 		}
-		if (!catalog.get(cat).get(prod).containsKey(saleable)) {
-			catalog.get(cat).get(prod).put(saleable, new TreeSet<Product>());
+		if (!catalog.get(cat).get(prodType).containsKey(brand)) {
+			catalog.get(cat).get(prodType).put(brand, new TreeSet<Product>());
 		}
-		catalog.get(cat).get(prod).get(saleable).add(pro);
+
+		return catalog.get(cat).get(prodType).get(brand).add(pro);
 	}
 
 	public void printCatalog() {
-		for (Entry<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
+		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
 			System.out.println("------------" + e.getKey() + "------------");
 			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
 				System.out.println("     *****" + e1.getKey() + "*****");
@@ -98,7 +132,13 @@ public class Catalog {
 	}
 
 	public void updateProductAmount(Product p) {
-		for (Entry<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
+		if (p == null)
+			return;
+		Category cat = p.getCategory();
+		ProductType prodType = p.getProductType();
+		IBrand brand = p.getBrand();
+
+		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
 			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
 				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
 					for (Product wo : e2.getValue()) {

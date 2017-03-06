@@ -6,7 +6,7 @@ public class Oven extends Product{
 	
 
 	public Oven(String name, double price, int amount,OvenModel brand) {
-		super(name, price, amount, Categories.KITCHEN,ProductType.OVEN, brand);
+		super(name, price, amount, Category.KITCHEN,ProductType.OVEN, brand);
 	}
 
 	

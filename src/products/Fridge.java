@@ -7,7 +7,7 @@ public class Fridge extends Product{
 	protected FridgeModel fridges;
 	
 	public Fridge(String name, double price, int amount,FridgeModel brand) {
-		super(name, price, amount, Categories.KITCHEN,ProductType.FRIDGE, brand);
+		super(name, price, amount, Category.KITCHEN,ProductType.FRIDGE, brand);
 		this.fridges = fridges;
 	}
 

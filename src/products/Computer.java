@@ -15,7 +15,7 @@ public  class Computer extends Product {
 	public Computer(String name, double price, int amount,
 			ComputerModel brand, int ram, int hardDisk, String processor,
 			String operationSystem, int year) {
-		super(name, price, amount, Categories.IT,Product.ProductType.COMPUTER, brand);
+		super(name, price, amount, Category.IT,Product.ProductType.COMPUTER, brand);
 
 		this.ram = ram;	
 		this.hardDisk = hardDisk;

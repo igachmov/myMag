@@ -6,7 +6,7 @@ public class Television extends Product{
 	
 
 	public Television(String name, double price, int amount,TVModels brand) {
-		super(name, price, amount, Categories.IT,ProductType.TELEVISION, brand);
+		super(name, price, amount, Category.IT,ProductType.TELEVISION, brand);
 	}
 
 

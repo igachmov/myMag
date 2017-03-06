@@ -7,7 +7,7 @@ public  class SmartPhone extends Product{
 
 	
 	public SmartPhone(String name, double price, int amount,PhoneModel brand) {
-		super(name, price, amount, Categories.MOBILES,ProductType.SMARTPHONE, brand);
+		super(name, price, amount, Category.MOBILES,ProductType.SMARTPHONE, brand);
 	}
 
 

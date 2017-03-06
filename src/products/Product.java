@@ -6,7 +6,7 @@ public abstract class Product implements Comparable<Product>{
 	
 	public interface IBrand{};
 
-	public enum Categories{IT,KITCHEN,MOBILES};
+	public enum Category{IT,KITCHEN,MOBILES};
 	public enum ProductType{COMPUTER,LAPTOP,FRIDGE,OVEN,SMARTPHONE,TELEVISION};
 	
 	//collection for rates HashMap<User,int stars>
@@ -22,12 +22,12 @@ public abstract class Product implements Comparable<Product>{
 	private double price;
 	private int amount;
 	
-	private Categories categories;
+	private Category categories;
 	private ProductType productType;
 	private IBrand brand;
 	
 	
-	public Product(String name, double price, int amount,Categories category,ProductType product, IBrand brand) {
+	public Product(String name, double price, int amount,Category category,ProductType product, IBrand brand) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
@@ -45,7 +45,7 @@ public abstract class Product implements Comparable<Product>{
 	public abstract Product clone();
 
 	
-	public Categories getCategory() {
+	public Category getCategory() {
 		return this.categories;
 	}
 	public ProductType getProductType() {
