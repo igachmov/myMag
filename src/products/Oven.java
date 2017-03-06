@@ -1,17 +1,13 @@
 package products;
 
-import main.Products;
-import main.Products.Product;
-import main.Products.Saleable;
-
-public class Oven extends Products implements Comparable<Oven>{
+public class Oven extends Product implements Comparable<Oven>{
 	
 	enum OvenModel implements Saleable{GORENJE,BEKO,HANSA,WHIRLPOOL};
 	
 	protected OvenModel models;
 
 	public Oven(String name, double price, int amount,OvenModel models) {
-		super(name, price, amount, Categories.KITCHEN,Product.OVEN);
+		super(name, price, amount, Categories.KITCHEN,ProductType.OVEN);
 		this.models = models;
 	}
 
@@ -23,6 +19,12 @@ public class Oven extends Products implements Comparable<Oven>{
 
 	@Override
 	public Saleable getSaleable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product clone() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,5 +1,7 @@
 package main;
 
+import products.Product;
+
 public class Admin {
 
 	private String name;
@@ -15,11 +17,11 @@ public class Admin {
 		this.address = address;
 	}
 	
-	public void addProduct(Products product ){		
+	public void addProduct(Product product ){		
 		Catalog.getInstance().addCatalog(product);
 		
 	}
-	public void removeProduct(Products product){
+	public void removeProduct(Product product){
 		Catalog.getInstance().removeFromCatalog(product);
 	}
 	

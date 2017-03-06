@@ -1,58 +1,61 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.Map.Entry;
 
-import main.Products.Categories;
-import main.Products.Product;
-import main.Products.Saleable;
+import products.Product;
 
 public class Client {
 
-	private static int id;
+	private static long idGen;
+
+	private final long ID;
 	private String name;
 	private String surname;
 	private String address;
 	private String telNumber;
 	private String password;
-	private HashSet<Products> cart;
+	private HashSet<Product> cart;
 
-	public Client(String name, String surname, String address,
-			String telNumber, String password) {
-		cart = new HashSet<>();
+	public Client(String name, String surname, String address, String telNumber, String password) {
+
+		// TODO validate parameters.
+
 		this.name = name;
 		this.surname = surname;
 		this.address = address;
 		this.telNumber = telNumber;
 		this.password = password;
+
+		cart = new HashSet<>();
+
+		idGen++;
+		ID = idGen;
+
 	}
 
-	public void addToCart(Products prod) {
+	public void addToCart(Product prod) {
 		cart.add(prod.clone());
 	}
-	public void removeFromCart(Products prod){
+
+	public void removeFromCart(Product prod) {
 		cart.remove(prod);
 	}
-	public void changeAmount(Products prod, int incr){
-		prod.amount += incr;		
+
+	public void changeAmount(Product prod, int incr) {
+//		prod.amount += incr;
 	}
-	
-	public void search(String name){
-		 Catalog.getInstance().searchInCatalog(name);
-		 
+
+	public void search(String name) {
+		Catalog.getInstance().searchInCatalog(name);
+
 	}
-	
-	public void chechOut(){
-		for(Products product : cart ){				
+
+	public void chechOut() {
+		for (Product product : cart) {
 			Catalog.getInstance().updateProductAmount(product);
-		}		
+		}
 		cart = new HashSet<>();
 		System.out.println("The cart is empty");
 	}
-	
-	
 
 }

@@ -1,14 +1,13 @@
 package products;
 
-import main.Products;
-public class Fridge extends Products implements Comparable<Fridge>{
+public class Fridge extends Product implements Comparable<Fridge>{
 	
 	enum FridgeModel implements Saleable {WHIRLPOOL,PHILIPS,BEKO,INDESIT};
 
 	protected FridgeModel fridges;
 	
 	public Fridge(String name, double price, int amount,FridgeModel fridges) {
-		super(name, price, amount, Categories.KITCHEN,Product.FRIDGE);
+		super(name, price, amount, Categories.KITCHEN,ProductType.FRIDGE);
 		this.fridges = fridges;
 	}
 
@@ -20,6 +19,12 @@ public class Fridge extends Products implements Comparable<Fridge>{
 
 	@Override
 	public Saleable getSaleable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product clone() {
 		// TODO Auto-generated method stub
 		return null;
 	}
