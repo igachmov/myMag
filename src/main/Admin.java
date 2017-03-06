@@ -17,15 +17,14 @@ public class Admin {
 		this.address = address;
 	}
 	
-	
-	
-	public void addProduct(Product product){		
+	public void addProduct(Product product ){		
 		Catalog.getInstance().addToCatalog(product);
 		
 	}
 	public void removeProduct(Product product){
 		Catalog.getInstance().removeFromCatalog(product);
 	}
-		
+	
+	
 	
 }

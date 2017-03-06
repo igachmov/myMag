@@ -3,14 +3,13 @@ package main;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
 import products.Product;
 import products.Product.Category;
-import products.Product.ProductType;
 import products.Product.IBrand;
+import products.Product.ProductType;
 
 public class Catalog {
 
@@ -153,6 +152,6 @@ public class Catalog {
 				}
 			}
 		}
-
 	}
+	
 }

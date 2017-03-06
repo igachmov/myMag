@@ -22,7 +22,7 @@ public abstract class Product implements Comparable<Product>{
 	private double price;
 	private int amount;
 	
-	private Category categories;
+	private Category category;
 	private ProductType productType;
 	private IBrand brand;
 	
@@ -31,7 +31,7 @@ public abstract class Product implements Comparable<Product>{
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
-		this.categories = category;
+		this.category = category;
 		this.productType = product;
 		this.brand = brand;
 		
@@ -46,7 +46,7 @@ public abstract class Product implements Comparable<Product>{
 
 	
 	public Category getCategory() {
-		return this.categories;
+		return this.category;
 	}
 	public ProductType getProductType() {
 		return this.productType;
@@ -60,7 +60,12 @@ public abstract class Product implements Comparable<Product>{
 	public int getAmount() {
 		return this.amount;
 	}
-	
+	public LocalDate getDate() {
+		return dateAdded;
+	}
+	public double getPrice() {
+		return this.price;
+	}
 	
 	public void setAmount(int amount) {
 		this.amount = amount;
@@ -82,6 +87,9 @@ public abstract class Product implements Comparable<Product>{
 		}
 		return this.name+"---" +this.price+"----"+this.amount;
 	}
+
+
+	
 	
 	
 	
