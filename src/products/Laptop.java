@@ -1,23 +1,23 @@
 package products;
 
-public class Laptop extends Product implements Comparable<Laptop> {
+public class Laptop extends Product {
 
-	public enum LaptopModel implements Saleable {
+	public enum LaptopModel implements IBrand {
 		LENOVO, HP, DELL, ASUS
 	};
 
-	protected LaptopModel laptops;
 	protected int ram;
 	protected int hardDisk;
 	protected String processor;
 	protected String operationSystem;
 	protected int year;
 
-	public Laptop(String name, double price, int amount, LaptopModel laptops,
+	public Laptop(String name, double price, int amount, LaptopModel brand,
 			int ram, int hardDisk, String processor, String operationSystem,
 			int year) {
-		super(name, price, amount, Categories.IT, ProductType.LAPTOP);
-		this.laptops = laptops;
+		
+		super(name, price, amount, Categories.IT, ProductType.LAPTOP, brand);
+
 		this.ram = ram;	
 		this.hardDisk = hardDisk;
 		this.processor = processor;
@@ -26,19 +26,8 @@ public class Laptop extends Product implements Comparable<Laptop> {
 	}
 
 	@Override
-	public int compareTo(Laptop arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Saleable getSaleable() {
-		return this.laptops;
-	}
-
-	@Override
 	public Product clone() {
-		// TODO Auto-generated method stub
+		//TODO - If not proper abstract way of implementing adding to cart is found -> add concrete implementation;
 		return null;
 	}
 

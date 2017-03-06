@@ -2,24 +2,26 @@ package main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
 import products.Product;
 import products.Product.Categories;
 import products.Product.ProductType;
-import products.Product.Saleable;
+import products.Product.IBrand;
 
 public class Catalog {
-	private HashMap<Categories, HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>> catalog;
+	
+	private HashMap<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> catalog;
 
 	private static Catalog instance;
 
 	private Catalog() {
 		catalog = new HashMap<>();
-		catalog.put(Categories.IT, new HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>());
-		catalog.put(Categories.KITCHEN, new HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>());
-		catalog.put(Categories.MOBILES, new HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>());
+		catalog.put(Categories.IT, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
+		catalog.put(Categories.KITCHEN, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
+		catalog.put(Categories.MOBILES, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
 	}
 
 	public static Catalog getInstance() {
@@ -31,41 +33,48 @@ public class Catalog {
 	}
 
 	public void searchInCatalog(String name) {
-		ArrayList<Product> product = new ArrayList<>();
-		for (Entry<Categories, HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>> e : catalog.entrySet()) {
+		ArrayList<Product> matchingItems = new ArrayList<>();
+		
+		for (Entry<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
 
-			for (Entry<ProductType, HashMap<Saleable, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
+			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
 
-				for (Entry<Saleable, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
+				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
 
 					for (Product wo : e2.getValue()) {
 						if (wo.getName().contains(name)) {
-							product.add(wo);
+							matchingItems.add(wo);
 						}
 					}
 				}
 			}
 
-			System.out.println(product);
+		for (Iterator itr = catalog.entrySet().iterator(); itr.hasNext();) {
+			
+			Product product = (Product) itr.next();
+			
+		}
+		
+			System.out.println(matchingItems);
 
 		}
 
 	}
 
 	public void removeFromCatalog(Product prod) {
-		catalog.get(prod.getCategory()).get(prod.getProduct()).get(prod.getSaleable()).remove(prod);
+		catalog.get(prod.getCategory()).get(prod.getProductType()).get(prod.getBrand()).remove(prod);
 
 	}
 
 	public void addCatalog(Product pro) {
 		Categories cat = pro.getCategory();
-		Saleable saleable = pro.getSaleable();
-		ProductType prod = pro.getProduct();
+		IBrand saleable = pro.getBrand();
+		ProductType prod = pro.getProductType();
 		if (!catalog.containsKey(cat)) {
-			catalog.put(cat, new HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>());
+			catalog.put(cat, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
 		}
 		if (!catalog.get(cat).containsKey(prod)) {
-			catalog.get(cat).put(prod, new HashMap<Saleable, TreeSet<Product>>());
+			catalog.get(cat).put(prod, new HashMap<IBrand, TreeSet<Product>>());
 		}
 		if (!catalog.get(cat).get(prod).containsKey(saleable)) {
 			catalog.get(cat).get(prod).put(saleable, new TreeSet<Product>());
@@ -74,11 +83,11 @@ public class Catalog {
 	}
 
 	public void printCatalog() {
-		for (Entry<Categories, HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>> e : catalog.entrySet()) {
+		for (Entry<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
 			System.out.println("------------" + e.getKey() + "------------");
-			for (Entry<ProductType, HashMap<Saleable, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
+			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
 				System.out.println("     *****" + e1.getKey() + "*****");
-				for (Entry<Saleable, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
+				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
 					System.out.println("         ========" + e2.getKey() + "========");
 					for (Product wo : e2.getValue()) {
 						System.out.println("                ########" + wo + "########");
@@ -89,9 +98,9 @@ public class Catalog {
 	}
 
 	public void updateProductAmount(Product p) {
-		for (Entry<Categories, HashMap<ProductType, HashMap<Saleable, TreeSet<Product>>>> e : catalog.entrySet()) {
-			for (Entry<ProductType, HashMap<Saleable, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
-				for (Entry<Saleable, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
+		for (Entry<Categories, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
+			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
+				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
 					for (Product wo : e2.getValue()) {
 						if (wo.getName().equals(p.getName())) {
 							if (!(wo.getAmount() - p.getAmount() < 0)) {

@@ -1,31 +1,21 @@
 package products;
 
-public class Fridge extends Product implements Comparable<Fridge>{
+public class Fridge extends Product{
 	
-	enum FridgeModel implements Saleable {WHIRLPOOL,PHILIPS,BEKO,INDESIT};
+	enum FridgeModel implements IBrand {WHIRLPOOL,PHILIPS,BEKO,INDESIT};
 
 	protected FridgeModel fridges;
 	
-	public Fridge(String name, double price, int amount,FridgeModel fridges) {
-		super(name, price, amount, Categories.KITCHEN,ProductType.FRIDGE);
+	public Fridge(String name, double price, int amount,FridgeModel brand) {
+		super(name, price, amount, Categories.KITCHEN,ProductType.FRIDGE, brand);
 		this.fridges = fridges;
 	}
 
-	@Override
-	public int compareTo(Fridge arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public Saleable getSaleable() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Product clone() {
-		// TODO Auto-generated method stub
+		//TODO - If not proper abstract way of implementing adding to cart is found -> add concrete implementation;
 		return null;
 	}
 }

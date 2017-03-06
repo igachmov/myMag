@@ -6,9 +6,9 @@ import products.Product;
 
 public class Client {
 
-	private static long idGen;
+	private static int idGen =1_000_000_000;
 
-	private final long ID;
+	private final int ID;
 	private String name;
 	private String surname;
 	private String address;

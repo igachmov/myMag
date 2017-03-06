@@ -14,7 +14,7 @@ public class Demo {
 		Laptop laplenovo = new Laptop("Y20", 800, 15, LaptopModel.LENOVO, 5, 500, "ADM", "Windows 10", 2012);
 		
 		
-		
+
 		
 	}
 	

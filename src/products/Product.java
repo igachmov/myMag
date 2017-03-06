@@ -1,8 +1,10 @@
 package products;
 
-public abstract class Product {
+import java.time.LocalDate;
+
+public abstract class Product implements Comparable<Product>{
 	
-	public interface Saleable{};
+	public interface IBrand{};
 
 	public enum Categories{IT,KITCHEN,MOBILES};
 	public enum ProductType{COMPUTER,LAPTOP,FRIDGE,OVEN,SMARTPHONE,TELEVISION};
@@ -11,33 +13,67 @@ public abstract class Product {
 	
 	
 	private static int idGen =1;
-	private final long ID;
 	
-	protected String name;
-	protected double price;
-	protected int amount;
-	protected Categories categories;
-	protected ProductType product;
+	private final int ID;
+	private final LocalDate dateAdded;
+
+	private String name;
 	
-	public Product(String name, double price, int amount,Categories category,ProductType product) {
+	private double price;
+	private int amount;
+	
+	private Categories categories;
+	private ProductType productType;
+	private IBrand brand;
+	
+	
+	public Product(String name, double price, int amount,Categories category,ProductType product, IBrand brand) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
-		this.categories = categories;
-		this.product = product;
+		this.categories = category;
+		this.productType = product;
+		this.brand = brand;
+		
+		dateAdded = LocalDate.now();
+		
 		idGen++;
 		ID=idGen;		
 	}
 
 	
+	public abstract Product clone();
 
+	
 	public Categories getCategory() {
 		return this.categories;
 	}
-	public ProductType getProduct() {
-		return this.product;
+	public ProductType getProductType() {
+		return this.productType;
 	}
-	public abstract Saleable getSaleable();
+	public IBrand getBrand(){
+		return this.brand;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public int getAmount() {
+		return this.amount;
+	}
+	
+	
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	
+	
+	@Override
+	public int compareTo(Product o) {
+		if(this == o)
+			return 0;
+		return this.ID - o.ID;
+	}
 
 	@Override
 	public String toString() {
@@ -46,24 +82,6 @@ public abstract class Product {
 		}
 		return this.name+"---" +this.price+"----"+this.amount;
 	}
-	
-	public abstract Product clone();
-
-	public String getName() {
-		return name;
-	}
-
-	public int getAmount() {
-		return this.amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-	
-	
-
-
 	
 	
 	
