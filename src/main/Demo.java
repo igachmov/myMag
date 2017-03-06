@@ -1,12 +1,9 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-
 import products.Computer;
 import products.Computer.ComputerModel;
-import products.Laptop.LaptopModel;
 import products.Laptop;
+import products.Laptop.LaptopModel;
 
 public class Demo {
 
@@ -17,8 +14,7 @@ public class Demo {
 		Laptop laplenovo = new Laptop("Y20", 800, 15, LaptopModel.LENOVO, 5, 500, "ADM", "Windows 10", 2012);
 		
 		
-		
-		
+	
 	}
 	
 }
