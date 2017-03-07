@@ -17,6 +17,8 @@ public class Demo {
 		Product asus = new Computer("123", 800, 10, ComputerModel.ASUS, 2, 1000, "Intel Atom", "Windwos 8.1", 2011);
 		Product laplenovo = new Laptop("Y20", 800, 15, LaptopModel.LENOVO, 5, 500, "ADM", "Windows 10", 2012);
 		
+		Client gosho = new Client("Gosho", "Goshov", "Pernik", "089658566", "vinkela");
+		
 		Catalog.getInstance().addToCatalog(laplenovo);
 		Catalog.getInstance().addToCatalog(asus);
 		Catalog.getInstance().addToCatalog(lenovo);
@@ -25,15 +27,23 @@ public class Demo {
 		
 		System.out.println();
 		
-		LinkedList<Product> prod = new LinkedList<>();
-		prod.add(asus);
-		prod.add(lenovo);
-		prod.add(laplenovo);
-		System.out.println(prod);
-		System.out.println(Filter.filterByCategory(prod, Category.KITCHEN));
 	
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(asus);
+		gosho.addToCart(lenovo);
+		gosho.chechOut();
 		
-		System.out.println(laplenovo.compareTo(null));
 	}
 	
 }

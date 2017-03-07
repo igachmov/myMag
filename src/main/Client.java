@@ -2,6 +2,8 @@ package main;
 
 import java.util.HashSet;
 
+import main.Client.Cart;
+
 import products.Product;
 
 public class Client {
@@ -26,11 +28,15 @@ public class Client {
 		return telNumber;
 	}
 
+	
+	
 	private String surname;
 	private String address;
 	private String telNumber;
 	private String password;
 	private Cart userCart;
+	
+	
 
 	public Client(String name, String surname, String address, String telNumber, String password) {
 
@@ -47,18 +53,33 @@ public class Client {
 
 	}
 	
-	public void orderProduct(){
-		Order.getInstance(this).order(this);
+	
+	public Cart getCart() {
+		return this.userCart;
 	}
+	
+	public void addToCart(Product p){
+		userCart.addToCart(p);
+	}
+	
+	public void chechOut(){
+		userCart.checkOut();
+	}
+	
+	
 
-	private class Cart {
+	class Cart {
+
+		public HashSet<CartProduct> getHashCart() {
+			return cart;
+		}
 
 		private HashSet<CartProduct> cart;
 
 		private Cart() {
 			this.cart = new HashSet<>();
 		}
-
+		
 		/**
 		 * Adds <i>product</i> to the cart. If it is already present -
 		 * increments the amount by 1
@@ -75,13 +96,17 @@ public class Client {
 			CartProduct cartProduct = this.get(product);
 
 			if (cartProduct == null) {
-				cartProduct = new CartProduct(product, 1);
+				cartProduct = new CartProduct(product, 0);
 			} else if (product.getAmount() < cartProduct.amount + 1) {
+				//TODO pop a question if you want to continue with the available amount
 				System.out.println("Sorry, there isn't enough of that product in stock.");
 				return;
 			}
 
+			cart.add(cartProduct);
+
 			cartProduct.amount++;
+			
 		}
 
 		
@@ -116,12 +141,10 @@ public class Client {
 		}
 
 		public void checkOut() {
-			//TODO important! revamp!
-			// for (CartProduct product : cart) {
-			// Catalog.getInstance().updateProductAmount(product);
-			// }
+			Order.generateOrder(Client.this);
 			cart = new HashSet<>();
 			System.out.println("The cart is empty");
+			
 		}
 
 		/**
@@ -143,6 +166,7 @@ public class Client {
 			return null;
 		}
 
+	
 		/**
 		 * @return double - the total cost of ALL products currently in cart.
 		 */
@@ -186,9 +210,27 @@ public class Client {
 			public boolean equals(Object obj) {
 				return this.product.equals(obj);
 			}
+			
+			public Product getProduct(){
+				return this.product;
+			}
+
+			public int getAmount() {
+				return this.amount;
+			}
 
 		}
 
+		
+
 	}
+
+
+
+	
+
+
+	
+	
 
 }

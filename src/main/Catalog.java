@@ -130,7 +130,7 @@ public class Catalog {
 		}
 	}
 
-	public void updateProductAmount(Product p) {
+	public void updateProductAmount(Product p, int productAmount) {
 		if (p == null)
 			return;
 		Category cat = p.getCategory();
@@ -143,7 +143,7 @@ public class Catalog {
 					for (Product wo : e2.getValue()) {
 						if (wo.getName().equals(p.getName())) {
 							if (!(wo.getAmount() - p.getAmount() < 0)) {
-								wo.setAmount(wo.getAmount() - p.getAmount());
+								wo.setAmount(wo.getAmount() - productAmount);
 							}
 							// TODO check if wo.amount less than amount being
 							// ordered (p.amount)

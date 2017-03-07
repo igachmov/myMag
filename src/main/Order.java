@@ -1,5 +1,7 @@
 package main;
 
+import main.Client.Cart.CartProduct;
+
 import com.google.gson.Gson;
 
 public class Order {
@@ -10,14 +12,17 @@ public class Order {
 	private String surname;
 	private String address;
 	private String telNumber;
+	private Client.Cart orderCart;
 	
 	
 	
-	public Order(Client c) {
+	private Order(Client c) {
 		this.name = c.getName();
 		this.surname = c.getSurname();
 		this.address = c.getAddress();
 		this.telNumber = c.getTelNumber();
+		this.orderCart = c.getCart();
+		
 	}
 	
 	public static Order getInstance(Client c) {
@@ -28,9 +33,14 @@ public class Order {
 
 	}
 	
-	public void order(Client c){
+	public static void generateOrder(Client c){
+		Order order = new Order(c);		
+		 for (CartProduct carProduct : order.orderCart.getHashCart()) {
+					 Catalog.getInstance().updateProductAmount(carProduct.getProduct(),carProduct.getAmount());
+		}
+		
 		Gson gson = new Gson();
-		String json = gson.toJson(Order.getInstance(c));
+		String json = gson.toJson(order);
 		System.out.println(json);
 	}
 	
