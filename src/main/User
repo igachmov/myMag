@@ -1,0 +1,202 @@
+package Users;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+
+import Store.Order;
+//Има нужда от още проверки но го изпващам така за да видите първо дали ви харесва
+// и дали би ви свършил работа.
+public class User {
+	enum Type {
+		ADMIN, CLIENT
+	};
+    
+	private String name;
+	private String password;
+	private String email;
+	private Type type;
+
+	private static User admin;
+
+	private static HashSet<User> users = new HashSet<User>();
+	private ArrayList<Order> currentOrder;
+	private HashMap<Date, ArrayList<Order>> oldOrders;
+    
+	
+	//Конструктор за Юзера
+	private User(String name, String password, String email, Type type) {
+		if (!name.isEmpty())
+			this.name = name;
+
+		if (!password.isEmpty())
+			this.password = password;
+
+		if (!name.isEmpty() && email.matches("[a-z0-9._+-]+@[a-z0-9.-]+.[a-z]{2,6}"))
+			this.email = email;
+        //Трябва да се добавят методите за добавяне в сегашна поръчка
+		// и за запазване напредишни поръчки 
+		this.type = type;
+		if (type == Type.CLIENT) {  
+			this.currentOrder = new ArrayList<>();
+			this.oldOrders = new HashMap<>();
+
+		}
+		
+	}
+    // Предефинираме хеш и икуалс за да се подсигурим от повтаряне на Юзер в 
+	//колекцията от юзери.  Сравнението е по email но разбирасе може да се
+	//поправи!
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		return true;
+	}
+
+	
+	
+	//Прави първоначална регистрация на потребител. Създава нов обект и го
+	// вкарва в колекцията.
+	static boolean register(String name, String password, String email) {
+
+		if (users.add(new User(name, password, email, Type.CLIENT))) {
+			
+            User.addFirstAdmin();//Тук създава дефолтния админ. Реално в приложението това
+			//ще е при стартирането.
+			System.out.println("User is added!");
+			
+			return true;
+		} else {
+			System.out.println("User already exist");
+		}
+		return false;
+	}
+    
+	
+	
+	//Вписване на вече регистриран потребител връща референция към 
+	// текущия потребител 
+	static User signIn(String email, String password) {
+		for (User users2 : users) {
+			if (users2.email.equals(email) && users2.password.equals(password)) {
+				return users2;
+			}
+		}
+		return null;
+	}
+    
+	
+	
+	
+	// Промяна на парола на вече съществуващ юзер
+	protected boolean changePass(String currentPass, String newPass, String repeatNewPass) {
+		if (this.password.equals(currentPass) && newPass.equals(repeatNewPass)) {
+			this.password = newPass;
+			return true;
+		}
+		System.out.println("Something is wrong with the current or new password! ");
+		return false;// Тук трябва да има още проверки! Оставям го така за сега за да 
+		//видя първо как работи логиката.
+
+	}
+   
+	
+	
+	
+	// Промяна на email на вече регистриран юзер
+	protected boolean changeEmail(String newEmail) {
+		if (newEmail.matches("[a-z0-9._+-]+@[a-z0-9.-]+.[a-z]{2,6}")) {
+			this.email = newEmail;
+			return true;
+		}
+		return false;
+
+	}
+    
+	
+	//Извежда юзерите които са регистрирани в момента.
+	public static void showUsers() {
+		for (User users2 : users) {
+			System.out.println(users2);
+		}
+	}
+    
+	
+	//Премахва и слага артикули ако юзера е администратор.
+	//Трябва да се добави функционалност от колекция на магазина или ако не 
+	//са нужни тук да се махнат.
+	public void addItem() {
+		if (this.type == Type.ADMIN) {
+
+		}
+	}
+
+	public void removeItem() {
+		if (this.type == Type.ADMIN) {
+
+		}
+	}
+    
+	
+	// Добавя първия админ по подразбиране при първа регистрация.
+	//Реално в проекта може да е при стартиране на приложението
+	private static void addFirstAdmin() {
+		if (admin == null) {
+			admin = new User("admin", "admin", "admin@kamani.bg", Type.ADMIN);
+			users.add(admin);
+		}
+	}
+	
+	//Създава друг админ при необходимост ако искате го махнете това.
+	public void addNewAdmin(String name, String password, String email){
+		if(this.type==Type.ADMIN){
+		users.add(new User(name, password, email, Type.ADMIN));
+		}
+		else{
+			System.out.println("You are NOT Admin!!");
+		}
+	}
+	
+	
+	
+// Премахва юзер по email! Ако извикващия го е администратор
+	public boolean removeUser(String email) {
+		if (this.type == Type.ADMIN) {
+			for (User user : users) {
+				if (user.email.equals(email)) {
+					users.remove(user);
+					System.out.println("DONE!");
+					return true;
+				}
+			}
+		}
+		System.out.println("You are not Admin!");
+		return false;
+	}
+   // Предефинирано просто за визуализация
+	@Override
+	public String toString() {
+		return "Users [name=" + name + ", email=" + email + ", type=" + type + "]";
+	}
+
+}
