@@ -6,8 +6,9 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import products.Product;
-import products.Product.*;
-
+import products.Product.Category;
+import products.Product.IBrand;
+import products.Product.ProductType;
 
 public abstract class Filter {
 
@@ -32,6 +33,10 @@ public abstract class Filter {
 				if (o1Price > o2Price)
 					return 1;
 				if (o1Price < o2Price)
+				
+				if(o1Price > o2Price)
+					return 1;
+				if(o1Price < o2Price)
 					return -1;
 				return 0;
 			}
@@ -49,6 +54,10 @@ public abstract class Filter {
 				if (o1Price < o2Price)
 					return 1;
 				if (o1Price > o2Price)
+				
+				if(o1Price < o2Price)
+					return 1;
+				if(o1Price > o2Price)
 					return -1;
 				return 0;
 			}
@@ -65,6 +74,8 @@ public abstract class Filter {
 		});
 	}
 
+	
+	
 	private static ArrayList<Product> sortByComparator(Collection<Product> products, Comparator<Product> comp) {
 
 		if (products == null || comp == null)

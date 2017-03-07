@@ -6,7 +6,8 @@ import products.Computer;
 import products.Computer.ComputerModel;
 import products.Laptop;
 import products.Laptop.LaptopModel;
-import products.Product;import products.Product.Category;
+import products.Product;
+import products.Product.Category;
 
 public class Demo {
 
@@ -30,6 +31,7 @@ public class Demo {
 		prod.add(laplenovo);
 		System.out.println(prod);
 		System.out.println(Filter.filterByCategory(prod, Category.KITCHEN));
+	
 	}
 	
 }
