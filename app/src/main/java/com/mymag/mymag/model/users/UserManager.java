@@ -6,6 +6,6 @@ package com.mymag.mymag.model.users;
 
 public class UserManager {
 
-
+    //TODO
 
 }

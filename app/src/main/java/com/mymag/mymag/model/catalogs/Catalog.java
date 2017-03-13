@@ -81,7 +81,7 @@ public class Catalog {
 	 */
 	public boolean removeFromCatalog(Product prod) {
 		// TODO DANGEROUS .get(key) returns null if this map contains no mapping
-		// for the key => might lead to NullPointerExeption!
+		// for the key => might throw NullPointerExeption! Probably should be expanded and null checks added after each .get(...).
 		return catalog.get(prod.getCategory()).get(prod.getProductType()).get(prod.getBrand()).remove(prod);
 	}
 
