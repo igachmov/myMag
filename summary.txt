@@ -1,0 +1,28 @@
+#
+# Short description of classes in project by package:
+#
+
+com.mymag.mymag.model - Holds src code for model.
+
+        -model.products - Holds Product specifications;
+                -(c) Product - Abstract parent class for all product concretizations. Defines basic characteristics and relevant getters & constructor.
+                -(c) Computer, SmarthPhone, etc - Concrete products. Give specific constructors, extra characteristics and concrete IBrand implementations.
+
+        -model.users - Holds logic related to User creation, deletion and management
+                -(c) User - is the main class defining *what* the User is - characteristics, cart & related functionality. Has 2 inner classes:
+                        -(c) Cart - Handles storage of desired items, before purchase and related functionality. Has 1 inner class:
+                                -(c) CartProduct - Contains a reference to an item from the Catalog and desired amount of said item.
+
+                -(c) UserManager - *!not-implemented-yet!* - Contains logic that controls User log in/out and registering. (Might contain further methods related to User manipulation and serialization.)
+                -(c) Order - Used only when User finishes shopping and proceeds to checkOut. Handles the transition from User's Cart to a file in a format more convenient for processing by vendors.
+
+        -model.catalogs - Holds the Catalog - a collection of all Products in the store, and related functionality.
+                -(c) Catalog - a Singleton class centered around a Collection of Products. Provides some functionality related to modifying Products listed.
+                -(c) Filter - Abstract class defining sorting and filtering Product collections by specific criteria. 
+
+        -model.activities - Organizes Android Activities as needed.
+
+        -model.main - N/A
+
+
+
