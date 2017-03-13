@@ -28,11 +28,9 @@ public class Catalog {
 	 * @return Singleton instance of Catalog
 	 */
 	public static Catalog getInstance() {
-		if (instance == null) {
+		if (instance == null)
 			instance = new Catalog();
-		}
 		return instance;
-
 	}
 
 	/**
@@ -83,7 +81,7 @@ public class Catalog {
 	 */
 	public boolean removeFromCatalog(Product prod) {
 		// TODO DANGEROUS .get(key) returns null if this map contains no mapping
-		// for the key => might throw NullPointerExeption!
+		// for the key => might lead to NullPointerExeption!
 		return catalog.get(prod.getCategory()).get(prod.getProductType()).get(prod.getBrand()).remove(prod);
 	}
 

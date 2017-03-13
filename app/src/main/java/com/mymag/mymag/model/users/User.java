@@ -14,7 +14,7 @@ public class User {
 
 
     enum Type {
-        ADMIN, CLIENT;
+        ADMIN, CLIENT
     }
 
 

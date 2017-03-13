@@ -36,7 +36,7 @@ public class Order {
 		Order order = new Order(c);		
 		 for (User.Cart.CartProduct carProduct : order.orderCart.getProductsInCart()) {
 					 Catalog.getInstance().updateProductAmount(carProduct.getProduct(),carProduct.getAmount());
-		}
+		 }
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(order);
