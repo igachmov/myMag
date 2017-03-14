@@ -1,13 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+   android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mymag.mymag.model.activities.RegisterActivity">
 
-</RelativeLayout>
+   <LinearLayout
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <EditText
+           android:id="@+id/name"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="NAME"
+           android:layout_marginTop="15dp"
+           android:inputType="text"
+           android:textAlignment="center"
+           android:textColor="#FF5471CA"
+           android:textColorHint="#46c0e2" />
+
+
+       <EditText
+           android:id="@+id/password"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="PASSWORD"
+           android:layout_marginTop="15dp"
+           android:inputType="textPassword"
+           android:textAlignment="center"
+           android:textColor="#FF5471CA"
+           android:textColorHint="#46c0e2" />
+
+
+       <EditText
+           android:id="@+id/repPassword"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="15dp"
+           android:hint="REPEAT PASSWORD"
+           android:inputType="textPassword"
+           android:textAlignment="center"
+           android:textColor="#FF5471CA"
+           android:textColorHint="#46c0e2" />
+
+
+       <EditText
+           android:id="@+id/email"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="15dp"
+           android:hint="EMAIL"
+           android:inputType="textEmailAddress"
+           android:textAlignment="center"
+           android:textColor="#FF5471CA"
+           android:textColorHint="#46c0e2" />
+
+
+       <EditText
+           android:id="@+id/phone"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="15dp"
+           android:hint="PHONE"
+           android:inputType="phone"
+           android:textAlignment="center"
+           android:textColor="#FF5471CA"
+           android:textColorHint="#46c0e2" />
+
+
+       <EditText
+           android:id="@+id/address"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="15dp"
+           android:hint="ADDRESS"
+           android:inputType="text"
+           android:textAlignment="center"
+           android:textColor="#FF5471CA"
+           android:textColorHint="#46c0e2" />
+
+
+       <Button
+           android:id="@+id/save"
+           style="@style/Animation.AppCompat.Dialog"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:background="#32a8e7"
+           android:shadowColor="@color/colorAccent"
+           android:text="DONE"
+           android:textAlignment="center"
+           android:textColor="#0b268f"
+           android:textSize="20sp" />
+
+       <Button
+           android:id="@+id/cancel_Register"
+           style="@style/Animation.AppCompat.Dialog"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:background="#32a8e7"
+           android:shadowColor="@color/colorAccent"
+           android:text="CANCEL"
+           android:textAlignment="center"
+           android:textColor="#0b268f"
+           android:textSize="20sp" />
+   </LinearLayout>
+   </ScrollView>
+
