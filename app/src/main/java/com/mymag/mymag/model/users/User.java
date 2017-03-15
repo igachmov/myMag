@@ -13,40 +13,59 @@ public class User {
 
 
 
-    enum Type {
+
+    public enum Type {
         ADMIN, CLIENT
     }
 
 
     //    private final UUID userid;
     private static int userIDGen = 1;
-    private final int userID;
+    private  int userID;
+
+
+     public static User user;
+
+    public static void setUser(User user) {
+        User.user = user;
+    }
 
     private String name;
     private String password;
-    private String address;
     private String telNumber;
     private String email;
+    private String address;
     private final Type type;
 
     private static User admin;
 
     private Cart userCart;
 
+    public void setId(int id) {
+        this.userID = id;
+    }
+
     //Конструктор за Юзера
-    protected User(String name, String password, String email, Type type) {
+    public User(String name, String password, String email, String telNumber, String address, Type type) {
         if (!name.isEmpty())
             this.name = name;
         if (!password.isEmpty())
             this.password = password;
         if (!name.isEmpty() && email.matches("[a-z0-9._+-]+@[a-z0-9.-]+.[a-z]{2,6}"))
             this.email = email;
+        if (!telNumber.isEmpty()){
+            this.telNumber=telNumber;
+        }
+        if (!address.isEmpty()){
+            this.address=address;
+        }
+
 
         this.type = type;
         if (type == Type.CLIENT) {
             userCart = new Cart();
         }
-        this.userID = ++userIDGen;
+        //this.userID = ++userIDGen;
 
     }
 

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mymag.mymag.R;
+import com.mymag.mymag.model.users.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -66,6 +67,18 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(homeActivity);
                                 isRegistry=true;
                                 dbWorker.close();
+
+                                /* Create a new user from Class User and took the  fields and id from the data base*/
+
+                                User user = new User(c.getString(c.getColumnIndex("name")),c.getString(c.getColumnIndex("password")),
+                                        c.getString(c.getColumnIndex("email")),c.getString(c.getColumnIndex("phone")),
+                                                c.getString(c.getColumnIndex("address")),User.Type.CLIENT);
+                                user.setId(c.getInt(c.getColumnIndex("_id")));
+                                User.setUser(user);
+
+
+
+
                                 c.close();
                                 break;
                             }
