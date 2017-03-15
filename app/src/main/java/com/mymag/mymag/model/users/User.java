@@ -27,7 +27,9 @@ public class User {
      public static User user;
 
     public static void setUser(User user) {
-        User.user = user;
+        if (user!=null){
+            User.user = user;
+        }
     }
 
     private String name;
