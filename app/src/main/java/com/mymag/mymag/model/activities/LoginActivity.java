@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,14 +51,16 @@ public class LoginActivity extends AppCompatActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!email.getText().toString().isEmpty()&& !password.getText().toString().isEmpty()){
+
+                if (!email.getText().toString().trim().isEmpty()&& !password.getText().toString().trim().isEmpty()&&
+                        email.getText().toString().trim().matches(getString(R.string.Regex))&& password.getText().toString().trim().length()>=4){
                     DBWorker dbWorker = new DBWorker(getApplicationContext());
                     Cursor c = dbWorker.getValues();
                     if (c.moveToFirst()){
                         boolean isRegistry=false;
                         do {
-                            if (c.getString(c.getColumnIndex("email")).equals(email.getText().toString()) &&
-                                    c.getString(c.getColumnIndex("password")).equals(password.getText().toString())) {
+                            if (c.getString(c.getColumnIndex("email")).equals(email.getText().toString().trim()) &&
+                                    c.getString(c.getColumnIndex("password")).equals(password.getText().toString().trim())) {
                                 id = c.getInt(c.getColumnIndex("_id"));
                                 Toast.makeText(LoginActivity.this, "LOG IN SUCCESS", Toast.LENGTH_SHORT).show();
                                 startActivity(homeActivity);
@@ -69,15 +72,27 @@ public class LoginActivity extends AppCompatActivity {
                         }while (c.moveToNext());
 
                         if (!isRegistry){
-                            Toast.makeText(LoginActivity.this, "LOG IN IS NOT SUCCESS\n PLEASE REGISTERY" +
-                                    " FIRST", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "LOG IN IS NOT SUCCESS\n PLEASE  REGISTERY"
+                                    , Toast.LENGTH_SHORT).show();
                         }
 
                     }
 
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "PLEASE CHECK YOUR DATA AGAIN!", Toast.LENGTH_SHORT).show();
+                    if (email.getText().toString().trim().isEmpty()){
+                        email.setError("Please enter your email!");
+                    }
+                    if (!email.getText().toString().trim().matches(getString(R.string.Regex))) {
+                        email.setError("Please check your email!");
+                    }
+                    if (password.getText().toString().trim().isEmpty()){
+                        password.setError("Please enter your password!");
+                    }
+                    if (password.getText().toString().length()<4 ){
+                        password.setError("Minimum 4 characters!");
+                    }
+
                 }
             }
         });

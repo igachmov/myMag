@@ -34,7 +34,9 @@
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:hint="PASSWORD"
+
         android:textColorHint="#46c0e2"
         android:textAlignment="center"
         android:textSize="20sp"

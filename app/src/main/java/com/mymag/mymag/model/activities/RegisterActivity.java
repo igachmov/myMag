@@ -1,6 +1,7 @@
 package com.mymag.mymag.model.activities;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,26 +47,73 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBWorker dbWorker= new DBWorker(getApplicationContext());
-                if (name.getText().toString().isEmpty()||(email.getText().toString().isEmpty()||email.getText().toString()
+
+
+
+                 if (name.getText().toString().isEmpty()||(email.getText().toString().isEmpty()||! email.getText().toString()
                 .matches(getString(R.string.Regex)))||
                         password.getText().toString().isEmpty()||repPassword.getText().toString().isEmpty()||
                         phone.getText().toString().isEmpty()||address.getText().toString().isEmpty()||
-                        !password.getText().toString().equals(repPassword.getText().toString())){
+                        !password.getText().toString().equals(repPassword.getText().toString())||
+                         password.getText().length()<4||repPassword.getText().toString().length()<4)
+                {
 
-                    Toast.makeText(RegisterActivity.this, "Please check all data again!!", Toast.LENGTH_SHORT).show();
+                    if (name.getText().toString().trim().isEmpty()){
+                        name.setError("Please enter your name!");
+                    }
+                    if (password.getText().toString().trim().isEmpty()){
+                        password.setError("Please enter your password!");
+                    }
+                    if (repPassword.getText().toString().trim().isEmpty()){
+                        repPassword.setError("Please repeat your password!");
+                    }
+                    if (email.getText().toString().trim().isEmpty()){
+                        email.setError("Please enter your email!");
+                    }
+                    if (!email.getText().toString().trim().matches(getString(R.string.Regex))) {
+                        email.setError("Please check your email!");
+                    }
+
+                    if (phone.getText().toString().trim().isEmpty()){
+                        phone.setError("Please enter your phone!");
+                    }
+                    if (address.getText().toString().trim().isEmpty()){
+                        address.setError("Please enter your address!");
+                    }
+                    if (!password.getText().toString().trim().isEmpty()&&!repPassword.getText().toString().trim().isEmpty()){
+                        if (!password.getText().toString().equals(repPassword.getText().toString())){
+                            repPassword.setError("Passwords are not the same!");
+                        }
+
+                    }
+
+                    if (repPassword.getText().toString().length()<4 ){
+                        repPassword.setError("Minimum 4 characters!");
+                    }
                 }
                 else {
+                    boolean isExist=false;
+                    Cursor c = dbWorker.getValues();
+                    if (c.moveToFirst()) {
+                        do {
+                            if (c.getString(c.getColumnIndex("email")).equals(email.getText().toString())) {
 
-                    dbWorker.addRecord(name.getText().toString(),name.getText().toString(),
-                            password.getText().toString(),phone.getText().toString(),
-                            address.getText().toString());
-                    Log.e("anatoli", "SAVE");
-                    dbWorker.close();
-                    Toast.makeText(RegisterActivity.this, "registration is successful! \n Please Log In", Toast.LENGTH_SHORT).show();
-                    startActivity(goToLogIn);
+                                isExist=true;
+                                Toast.makeText(RegisterActivity.this, "This email already exist!", Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                        } while (c.moveToNext());
+                    }
+                    if (!isExist){
+                        dbWorker.addRecord(name.getText().toString().trim(),password.getText().toString().trim(),
+                                email.getText().toString().trim(),phone.getText().toString().trim(),
+                                address.getText().toString().trim());
+                        dbWorker.close();
+                        Toast.makeText(RegisterActivity.this, "registration is successful! \n Please Log In", Toast.LENGTH_SHORT).show();
+                        startActivity(goToLogIn);
+                    }
+
                 }
-
-
 
             }
         });
