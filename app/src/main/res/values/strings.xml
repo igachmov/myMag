@@ -4,6 +4,5 @@
     <string name="product_price"> Price: 200$</string>
     <string name="amount">Amount</string>
     <string name="amountNumber">1</string>
-
-
+    <string name="Regex">^[a-z0-9._]+@[a-z0-9]+.[a-z]{2,4}$</string>
 </resources>
