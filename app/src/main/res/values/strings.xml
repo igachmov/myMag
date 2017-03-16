@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">myMag</string>
+    <string name="product_name">Laptop Lenovo G520</string>
+    <string name="product_price"> Price: 200$</string>
+    <string name="amount">Amount</string>
+    <string name="amountNumber">1</string>
+
+
 </resources>
