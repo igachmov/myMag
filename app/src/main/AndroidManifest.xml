@@ -21,7 +21,6 @@
         <activity android:name=".model.activities.CartActivity" />
 
         <activity android:name=".model.activities.ProductActivity" />
-        <activity android:name=".model.activities.SpecificationActivity" />
         <activity android:name=".model.activities.UserActivity" />
         <activity android:name=".model.activities.CategoryActivity" />
         <activity android:name=".model.activities.ProductListActivity" />
