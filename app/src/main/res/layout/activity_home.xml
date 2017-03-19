@@ -45,7 +45,7 @@
         android:id="@+id/register_redirect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sign_in" />
+        android:text="register" />
 
     <Button
         android:id="@+id/product_redirect"
