@@ -14,12 +14,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mymag.mymag.R;
-
-import org.w3c.dom.Text;
 
 public class ProductActivity extends AppCompatActivity {
 
@@ -68,9 +65,70 @@ public class ProductActivity extends AppCompatActivity {
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            TextView tv = new TextView(getActivity());
-            tv.setText("HOPE THIS WORKS ~O_O~");
-            return tv;
+            View v = inflater.inflate(R.layout.fragment_product_description, container, false);
+            TextView description = (TextView) v.findViewById(R.id.product_description);
+            description.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum." +
+                    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" +
+                    " ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
+                    " in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+                    " deserunt mollit anim id est laborum.");
+            return v;
         }
     }
 
@@ -114,7 +172,7 @@ class ProductPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return "description";
             case 1:
