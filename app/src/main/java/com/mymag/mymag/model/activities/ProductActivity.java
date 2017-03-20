@@ -17,6 +17,7 @@ import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -159,6 +160,14 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.actionbutton_to_cart:
+                startActivity(new Intent(this, CartActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 

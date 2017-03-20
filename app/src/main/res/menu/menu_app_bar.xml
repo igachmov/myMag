@@ -10,7 +10,8 @@
         android:title="Search" />
 
     <item
-        app:showAsAction="ifRoom|collapseActionView"
+        android:id="@+id/actionbutton_to_cart"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_cart"
         android:title="Cart" />
 

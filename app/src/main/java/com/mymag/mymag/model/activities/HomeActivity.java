@@ -1,17 +1,17 @@
 package com.mymag.mymag.model.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.mymag.mymag.R;
 import com.mymag.mymag.model.products.Computer;
-import com.mymag.mymag.model.products.Product;
 
 import java.util.Random;
 
@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
                 int id = v.getId();
                 Class destination = HomeActivity.class;
 
-                switch (id){
+                switch (id) {
                     case R.id.cart_redirect:
                         destination = CartActivity.class;
                         break;
@@ -80,8 +80,8 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 Random rand = new Random();
                 Intent i = new Intent();
-                i.putExtra("Product", new Computer("NAME","THIS IS A TEST DESCRIPTION", rand.nextInt(10_000),33, Computer.ComputerModel.ASUS,126,1000,"Fyzen 7","OS-Y",1998));
-                i.setClass(HomeActivity.this,destination);
+                i.putExtra("Product", new Computer("TEST_NAME", "THIS IS A TEST DESCRIPTION", rand.nextInt(10_000), 33, Computer.ComputerModel.ASUS, 126, 1000, "Fyzen 7", "OS-Y", 1998));
+                i.setClass(HomeActivity.this, destination);
                 startActivity(i);
             }
         };
@@ -99,7 +99,16 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_app_bar,menu);
+        getMenuInflater().inflate(R.menu.menu_app_bar, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actionbutton_to_cart:
+                startActivity(new Intent(this, CartActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
