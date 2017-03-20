@@ -6,4 +6,5 @@
     <string name="amountNumber">1</string>
     <string name="Regex">^[a-z0-9._]+@[a-z0-9]+.[a-z]{2,4}$</string>
     <string name="PRODUCT_KEY">Product</string>
+    <string name="PRODUCT_LIST_KEY">PRODUCT_LIST</string>
 </resources>

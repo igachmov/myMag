@@ -199,6 +199,7 @@ class ProductSpecsListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        //TODO try getting inflater via LayoutInflater.from(Context);
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.view_product_specification, parent, false);
 

@@ -12,10 +12,14 @@ import android.widget.Button;
 
 import com.mymag.mymag.R;
 import com.mymag.mymag.model.products.Computer;
+import com.mymag.mymag.model.products.Laptop;
+import com.mymag.mymag.model.products.Product;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
+    Random rand = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent i = new Intent();
+
                 int id = v.getId();
                 Class destination = HomeActivity.class;
 
@@ -69,18 +75,18 @@ public class HomeActivity extends AppCompatActivity {
                         destination = RegisterActivity.class;
                         break;
                     case R.id.product_redirect:
+                        i.putExtra("Product", new Computer("TEST_NAME", "THIS IS A TEST DESCRIPTION", rand.nextInt(10_000), 33, Computer.ComputerModel.ASUS, 126, 1000, "Fyzen 7", "OS-Y", 1998));
                         destination = ProductActivity.class;
                         break;
                     case R.id.product_list_redirect:
+                        i.putExtra(getString(R.string.PRODUCT_LIST_KEY),generateProductList(100));
                         destination = ProductListActivity.class;
                         break;
                     case R.id.user_redirect:
                         destination = UserActivity.class;
                         break;
                 }
-                Random rand = new Random();
-                Intent i = new Intent();
-                i.putExtra("Product", new Computer("TEST_NAME", "THIS IS A TEST DESCRIPTION", rand.nextInt(10_000), 33, Computer.ComputerModel.ASUS, 126, 1000, "Fyzen 7", "OS-Y", 1998));
+
                 i.setClass(HomeActivity.this, destination);
                 startActivity(i);
             }
@@ -96,6 +102,13 @@ public class HomeActivity extends AppCompatActivity {
         user.setOnClickListener(clickListener);
     }
 
+    private ArrayList<Product> generateProductList(int size) {
+        ArrayList<Product> products = new ArrayList<>();
+        if (size <= 0) size = 25;
+        for (int i = 0; i < size; i++)
+            products.add(new Laptop("TestName " + i, "TestDescription " + i, rand.nextInt(10_000), rand.nextInt(100) + 1, Laptop.LaptopModel.ASUS, (rand.nextInt(6) + 1) * 4, 1000 + i, "TestCPU " + i, "OSY", 1995));
+        return products;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
