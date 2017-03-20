@@ -121,7 +121,7 @@ public class ProductActivity extends AppCompatActivity {
             product = (Product) getArguments().getSerializable(PRODUCT_KEY);
 
             description.setText(product.getDescription());
-            price.setText(String.valueOf(product.getPrice()));
+            price.setText("price: " + String.valueOf(product.getPrice() + "$"));
 
             return v;
         }

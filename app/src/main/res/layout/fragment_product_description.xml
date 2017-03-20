@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundLight"
-    android:padding="32dp">
+    android:paddingLeft="@dimen/standard_view_padding"
+    android:paddingRight="@dimen/standard_view_padding">
 
 
     <ScrollView
@@ -27,20 +28,23 @@
             <View style="@style/HorizontalDivide" />
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="XX XXXX.XX"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="24sp" />
+
+            <View style="@style/HorizontalDivide" />
+
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/product_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="8dp"
-                android:text="XX XXXX.XX"
-                android:textAlignment="center"
-                android:textColor="@android:color/holo_red_light"
-                android:textSize="36sp" />
+
 
         </android.support.v7.widget.LinearLayoutCompat>
     </ScrollView>
