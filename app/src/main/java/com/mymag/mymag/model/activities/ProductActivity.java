@@ -9,12 +9,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -29,7 +29,6 @@ import com.mymag.mymag.model.products.Product;
 import com.mymag.mymag.model.users.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ProductActivity extends AppCompatActivity {
@@ -71,6 +70,9 @@ public class ProductActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.product_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabTextColors(ContextCompat.getColor(this,R.color.backgroundLight),ContextCompat.getColor(this,R.color.colorAccent));
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.buy_button);
 
@@ -164,7 +166,6 @@ class ProductSpecsListAdapter extends BaseAdapter {
 
     //Used ArrLst insted as HshMap (as Product.getSpecs() returns, to allow returning by position(index);
     private ArrayList<Map.Entry<String, String>> specifications;
-
     private Context c;
 
     ProductSpecsListAdapter(Context context, Product p) {
@@ -174,11 +175,7 @@ class ProductSpecsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        Log.e("specs.size() == ", String.valueOf(specifications.size()));
-
-        return this.specifications.size();
-    }
+    public int getCount() { return this.specifications.size(); }
 
     @Override
     public Object getItem(int position) {

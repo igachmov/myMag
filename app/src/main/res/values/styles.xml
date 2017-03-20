@@ -21,5 +21,11 @@
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
+    <style name="ToolbarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/backgroundLight</item>
+        <item name="android:textColorSecondary">@color/backgroundLight</item>
+        <item name="actionMenuTextColor">@color/backgroundLight</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
 </resources>
