@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_product"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.mymag.mymag.model.activities.ProductActivity">
+    android:background="@color/backgroundLight"
 
+    tools:context="com.mymag.mymag.model.activities.ProductActivity">
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -20,30 +20,15 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/product_tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            style="@style/TabLayout"
+            android:elevation="@dimen/app_bar_elevation"
             app:tabGravity="fill"
-            app:tabMode="fixed">
-
-        </android.support.design.widget.TabLayout>
-
-
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/product_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/laptop_lenovo" />
-
-        <View style="@style/HorizontalDivide" />
+            app:tabMode="fixed" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/product_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-        </android.support.v4.view.ViewPager>
+            android:layout_height="wrap_content" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -53,7 +38,6 @@
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
         android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

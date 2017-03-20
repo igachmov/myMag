@@ -5,4 +5,7 @@
 
     <dimen name="design_fab_size" tools:override="true">100dp</dimen>
     <dimen name="design_fab_content_size" tools:override="true">98dp</dimen>
+
+    <dimen name="app_bar_elevation">4dp</dimen>
+    <dimen name="standard_view_padding">16dp</dimen>
 </resources>

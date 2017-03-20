@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<android.support.v7.widget.ListViewCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/product_specs_list"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:background="@color/backgroundLight" />
 
-    <ScrollView
-        android:id="@+id/specifications_view"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TableLayout
-            android:id="@+id/product_specs_table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-        </TableLayout>
-    </ScrollView>
 
-</ScrollView>
