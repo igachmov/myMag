@@ -3,16 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mymag.mymag.model.activities.ProductListActivity">
+    android:background="@color/backgroundLight"
+    tools:context="com.mymag.mymag.model.activities.ProductListActivity"
+    android:orientation="vertical">
 
+    <include layout="@layout/app_bar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/productlist_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    </android.support.v7.widget.RecyclerView>
-
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

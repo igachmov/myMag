@@ -64,7 +64,6 @@ public class ProductActivity extends AppCompatActivity {
         setSupportActionBar(tb);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayUseLogoEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.product_view_pager);
         viewPager.setAdapter(pagerAdapter);
@@ -92,6 +91,14 @@ public class ProductActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_app_bar, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.actionbutton_to_cart:
+                startActivity(new Intent(this, CartActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -160,14 +167,6 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.actionbutton_to_cart:
-                startActivity(new Intent(this, CartActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
 
 

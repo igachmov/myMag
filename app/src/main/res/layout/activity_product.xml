@@ -14,9 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/app_bar"
-            layout="@layout/app_bar" />
+        <include layout="@layout/app_bar" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/product_tab_layout"
