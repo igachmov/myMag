@@ -24,6 +24,10 @@ import java.util.ArrayList;
 
 public class ProductListActivity extends AppCompatActivity {
 
+    //TODO - add Product tags to Views, to avoid possible missmatch between itemId and collection index
+    //TODO - documentation
+    //TODO - review possible stability problems
+
     private static String PRODUCT_LIST_KEY;
     private RecyclerView recyclerView;
     private ProductRecyclerAdapter recyclerAdapter;
@@ -42,17 +46,8 @@ public class ProductListActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        products = (ArrayList<Product>) getIntent().getSerializableExtra(PRODUCT_LIST_KEY);
-
-        //TODO passes the null-check regardless :(
-//        if (products == null){
-//            Toast.makeText(this, "Hello there pal! I'm a NullPointr. Quite cool, eh?", Toast.LENGTH_SHORT).show();
-//            finish();
-//        }
-//        if (products.isEmpty()) {
-//            Toast.makeText(this, "Sorry, no items to display", Toast.LENGTH_SHORT).show();
-//            finish();
-//        }
+        products = new ArrayList<>();
+        products.addAll((ArrayList<Product>) getIntent().getSerializableExtra(PRODUCT_LIST_KEY));
 
         recyclerView = (RecyclerView) findViewById(R.id.productlist_recyclerview);
         recyclerAdapter = new ProductRecyclerAdapter(this, products);
@@ -122,18 +117,15 @@ class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecyclerAdapter
             itemView.setOnClickListener(this);
             photo = (ImageView) itemView.findViewById(R.id.productlist_photo);
             title = (TextView) itemView.findViewById(R.id.productlist_title);
-
         }
 
         @Override
         public void onClick(View v) {
-
             Intent i = new Intent(c,ProductActivity.class);
             i.putExtra(c.getString(R.string.PRODUCT_KEY),data.get(getLayoutPosition()));
             c.startActivity(i);
         }
     }
-
 }
 
 
