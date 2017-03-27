@@ -11,9 +11,6 @@ import java.util.UUID;
 
 public class User {
 
-
-
-
     public enum Type {
         ADMIN, CLIENT
     }
@@ -61,7 +58,6 @@ public class User {
         if (!address.isEmpty()){
             this.address=address;
         }
-
 
         this.type = type;
         if (type == Type.CLIENT) {

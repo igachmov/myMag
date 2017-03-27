@@ -19,7 +19,6 @@
         <activity android:name=".model.activities.HomeActivity" />
         <activity android:name=".model.activities.RegisterActivity" />
         <activity android:name=".model.activities.CartActivity" />
-
         <activity android:name=".model.activities.ProductActivity" />
         <activity android:name=".model.activities.SpecificationActivity" />
         <activity android:name=".model.activities.UserActivity" />
