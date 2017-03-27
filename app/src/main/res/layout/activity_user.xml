@@ -49,6 +49,7 @@
 
             <ImageView
                 android:layout_margin="15dp"
+                android:background="@null"
                 android:id="@+id/image_phone"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -57,6 +58,7 @@
             <ImageView
                 android:id="@+id/image_email"
                 android:layout_margin="15dp"
+                android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
@@ -64,6 +66,7 @@
             <ImageView
                 android:id="@+id/image_address"
                 android:layout_margin="15dp"
+                android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
@@ -114,7 +117,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="20dp"
             android:textSize="20sp"
-            android:background="@color/colorAccent"
+            android:background="#7fc6ec"
             android:layout_height="match_parent" />
         <Button
             android:id="@+id/user_button_delete"
@@ -122,7 +125,7 @@
             android:textSize="20sp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
-            android:background="@color/colorAccent"
+            android:background="#7fc6ec"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent" />
