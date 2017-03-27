@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.mymag.mymag.model.activities.HomeActivity">
 
 
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp"></LinearLayout>
+
+    <Button
+        android:id="@+id/cart_redirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cart" />
+
+    <Button
+        android:id="@+id/category_redirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="category" />
+
+    <Button
+        android:id="@+id/check_out_redirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="check_out" />
+
+    <Button
+        android:id="@+id/log_in_redirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="log_in" />
+
+    <Button
+        android:id="@+id/register_redirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="register" />
+
+    <Button
+        android:id="@+id/product_redirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="product" />
+    <Button
+    android:id="@+id/product_list_redirect"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="product_list" />
+
+
+    <Button
+        android:id="@+id/user_redirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="user" />
+</LinearLayout>

@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="HorizontalDivide">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dip</item>
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
+    <style name="TabLayout" parent="TabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/backgroundLight</item>
+        <item name="android:textColorSecondary">@color/backgroundLight</item>
+        <item name="actionMenuTextColor">@color/backgroundLight</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>

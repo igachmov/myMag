@@ -2,9 +2,8 @@ package com.mymag.mymag.model.activities;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +14,7 @@ import com.mymag.mymag.model.users.User;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CODE = 1;
     Button logIn;
     Button goToRegister;
     EditText email;
@@ -23,9 +23,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_log_in);
 
         email=(EditText)findViewById(R.id.email_in);
         password=(EditText)findViewById(R.id.password_in);
@@ -35,19 +35,19 @@ public class LoginActivity extends AppCompatActivity {
         final Intent homeActivity = new Intent(LoginActivity.this,HomeActivity.class);
 
 
-
-        goToRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(register);
-            }
-        });
-
         {
             DBWorker worker = new DBWorker(getApplicationContext());
             worker.addRecord("admin","123456","admin@ittalents.bg","0888888888","Mall Bulgaria");
             worker.close();
         }
+
+
+        goToRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(register,REQUEST_CODE);
+            }
+        });
 
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,4 +111,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data!=null){
+            UserIntent intentForResult= (UserIntent)data.getSerializableExtra("intentForResult");
+            email.setText(intentForResult.getEmail());
+            password.setText(intentForResult.getPassword());
+
+        }
+    }
 }
+
+

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,9 +11,12 @@ import android.widget.Toast;
 
 import com.mymag.mymag.R;
 
+import java.io.Serializable;
+
 public class RegisterActivity extends AppCompatActivity {
 
 
+    public static final int RESULT_CODE = 2;
     EditText name;
     EditText password;
     EditText repPassword;
@@ -40,8 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         address=(EditText)findViewById(R.id.address);
         cancel = (Button) findViewById(R.id.cancel_Register);
 
-        final Intent cancelIntent= new Intent(RegisterActivity.this,LoginActivity.class);
-        final Intent goToLogIn= new Intent(RegisterActivity.this,LoginActivity.class);
+
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +112,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 address.getText().toString().trim());
                         dbWorker.close();
                         Toast.makeText(RegisterActivity.this, "registration is successful! \n Please Log In", Toast.LENGTH_SHORT).show();
-                        startActivity(goToLogIn);
+                        Intent intent= new Intent();
+                       UserIntent intentForResult = new UserIntent(email.getText().toString(),password.getText().toString());
+                        intent.putExtra("intentForResult",intentForResult);
+                        setResult(RESULT_OK,intent);
+                        finish();
+
                     }
 
                 }
@@ -121,9 +128,26 @@ public class RegisterActivity extends AppCompatActivity {
        cancel.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               startActivity(cancelIntent);
+              finish();
            }
        });
 
+    }
+}
+class UserIntent implements Serializable{
+    private String email;
+    private String password;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public UserIntent(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 }
