@@ -47,6 +47,10 @@ public class User {
         this.userID = id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     //Конструктор за Юзера
     public User(String name, String password, String email, String telNumber, String address, Type type) {
         if (!name.isEmpty())
