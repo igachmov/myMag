@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    //TODO - add Product tags to Views, to avoid possible missmatch between itemId and collection index
     //TODO - documentation
     //TODO - review possible stability problems
 
@@ -57,7 +56,7 @@ public class ProductListActivity extends AppCompatActivity {
             finish();
 
         recyclerView = (RecyclerView) findViewById(R.id.productlist_recyclerview);
-        recyclerAdapter = new ProductRecyclerAdapter(this, products);
+        recyclerAdapter = new ProductRecyclerAdapter(this, R.layout.view_product_row, products);
         recyclerView.setAdapter(recyclerAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -105,59 +104,7 @@ public class ProductListActivity extends AppCompatActivity {
     }
 }
 
-class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecyclerAdapter.ProductRecyclerViewHolder> {
-
-    Context c;
-    ArrayList<Product> data;
-    private LayoutInflater inflater;
-
-    ProductRecyclerAdapter(Context context, ArrayList<Product> data) {
-        inflater = LayoutInflater.from(context);
-        c = context;
-        this.data = data;
-    }
-
-    @Override
-    public ProductRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = inflater.inflate(R.layout.view_product_row, parent, false);
-
-        ProductRecyclerViewHolder viewHolder = new ProductRecyclerViewHolder(v);
-
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(ProductRecyclerViewHolder holder, int position) {
-        Product p = data.get(position);
-        holder.title.setText(p.getName());
-        holder.photo.setImageDrawable(ContextCompat.getDrawable(c, R.drawable.photo_not_found));
-    }
-
-    @Override
-    public int getItemCount() {
-        return data.size();
-    }
 
 
-    class ProductRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        ImageView photo;
-        TextView title;
-
-        public ProductRecyclerViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            photo = (ImageView) itemView.findViewById(R.id.productlist_photo);
-            title = (TextView) itemView.findViewById(R.id.productlist_title);
-        }
-
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(c, ProductActivity.class);
-            i.putExtra(c.getString(R.string.PRODUCT_KEY), data.get(getLayoutPosition()));
-            c.startActivity(i);
-        }
-    }
-}
 
 
