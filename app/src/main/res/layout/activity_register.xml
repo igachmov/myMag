@@ -26,7 +26,7 @@
            android:inputType="text"
            android:textAlignment="center"
            android:textColor="#FF5471CA"
-           android:textColorHint="#46c0e2" />
+           android:textColorHint="#4b7683" />
 
 
        <EditText
@@ -38,7 +38,7 @@
            android:inputType="textPassword"
            android:textAlignment="center"
            android:textColor="#FF5471CA"
-           android:textColorHint="#46c0e2" />
+           android:textColorHint="#4b7683" />
 
 
        <EditText
@@ -50,7 +50,7 @@
            android:inputType="textPassword"
            android:textAlignment="center"
            android:textColor="#FF5471CA"
-           android:textColorHint="#46c0e2" />
+           android:textColorHint="#4b7683" />
 
 
        <EditText
@@ -62,7 +62,7 @@
            android:inputType="textEmailAddress"
            android:textAlignment="center"
            android:textColor="#FF5471CA"
-           android:textColorHint="#46c0e2" />
+           android:textColorHint="#4b7683" />
 
 
        <EditText
@@ -74,7 +74,7 @@
            android:inputType="phone"
            android:textAlignment="center"
            android:textColor="#FF5471CA"
-           android:textColorHint="#46c0e2" />
+           android:textColorHint="#4b7683" />
 
 
        <EditText
@@ -86,7 +86,7 @@
            android:inputType="text"
            android:textAlignment="center"
            android:textColor="#FF5471CA"
-           android:textColorHint="#46c0e2" />
+           android:textColorHint="#4b7683" />
 
 
        <Button
