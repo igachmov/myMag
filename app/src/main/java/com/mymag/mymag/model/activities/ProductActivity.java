@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -64,6 +65,7 @@ public class ProductActivity extends AppCompatActivity {
         setSupportActionBar(tb);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
 
         viewPager = (ViewPager) findViewById(R.id.product_view_pager);
         viewPager.setAdapter(pagerAdapter);
@@ -102,7 +104,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     /**
-     * Displays the product photo and product text description with buy button and price at the bottom.
+     * Displays the product photo and product text description.
      */
     public static class ProductDescriptionFragment extends Fragment {
         private Product product;
@@ -166,7 +168,6 @@ public class ProductActivity extends AppCompatActivity {
             return v;
         }
     }
-
 }
 
 

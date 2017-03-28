@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
                         destination = CartActivity.class;
                         break;
                     case R.id.category_redirect:
-                        destination = CartActivity.class;
+                        destination = CategoryActivity.class;
                         break;
                     case R.id.check_out_redirect:
                         destination = CheckOutActivity.class;
