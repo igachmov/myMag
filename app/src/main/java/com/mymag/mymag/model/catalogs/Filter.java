@@ -1,7 +1,11 @@
 package com.mymag.mymag.model.catalogs;
 
+import android.util.Log;
+
 import com.mymag.mymag.model.products.Product;
-import com.mymag.mymag.model.products.Product.*;
+import com.mymag.mymag.model.products.Product.Category;
+import com.mymag.mymag.model.products.Product.IBrand;
+import com.mymag.mymag.model.products.Product.ProductType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,6 +24,7 @@ public abstract class Filter {
     /**
      * Creates an ArrayList of the passed collection of Products, sorted in alphabetical order.
      * <b>!note that the method returns a new Collection!</b>
+     *
      * @param products - Collection of products, which to sort.
      * @return ArrayList<Product> sorted alphabetically by name
      */
@@ -36,6 +41,7 @@ public abstract class Filter {
     /**
      * Creates an ArrayList of the passed collection of Products, sorted in ascending order of price.
      * <b>!note that the method returns a <u>new</u> Collection!</b>
+     *
      * @param products - Collection of products, which to sort.
      * @return ArrayList<Product> sorted in ascending order of price
      */
@@ -58,6 +64,7 @@ public abstract class Filter {
     /**
      * Creates an ArrayList of the passed collection of Products, sorted in descending order of price.
      * <b>!note that the method returns a <u>new</u> Collection!</b>
+     *
      * @param products - Collection of products, which to sort.
      * @return ArrayList<Product> sorted in descending order of price
      */
@@ -81,6 +88,7 @@ public abstract class Filter {
     /**
      * Creates an ArrayList of the passed collection of Products, sorted by when they were added to the store.
      * <b>!note that the method returns a <u>new</u> Collection!</b>
+     *
      * @param products - Collection of products, which to sort.
      * @return ArrayList<Product> sorted date posted
      */
@@ -111,14 +119,15 @@ public abstract class Filter {
     /**
      * Creates an ArrayList containing all Products from the passed collection, that fit the passed Category.
      * <b>!note that the method returns a <u>new</u> Collection!</b>
+     *
      * @param products - Collection of Products, which to filter.
-     * @param cat - (e) Product.Category by which to filter.
+     * @param cat      - (e) Product.Category by which to filter.
      * @return new ArrayList<Product> containing all items that fit category passed.
      */
     public static ArrayList<Product> filterByCategory(Collection<Product> products, final Category cat) {
         ArrayList<Product> filteredProducts = new ArrayList<>();
 
-        for (Iterator<Product> itr = products.iterator(); itr.hasNext();){
+        for (Iterator<Product> itr = products.iterator(); itr.hasNext(); ) {
             Product p = itr.next();
             if (p.getCategory() == cat && !filteredProducts.contains(p))
                 filteredProducts.add(p);
@@ -131,40 +140,69 @@ public abstract class Filter {
     /**
      * Creates an ArrayList containing all Products from the passed collection, that fit the passed ProductType.
      * <b>!note that the method returns a <u>new</u> Collection!</b>
+     *
      * @param products - Collection of Products, which to filter.
-     * @param type - (e) Product.ProductType by which to filter.
+     * @param type     - (e) Product.ProductType by which to filter.
      * @return new ArrayList<Product> containing all items that fit category passed.
      */
-	public static ArrayList<Product> filterByType(Collection<Product> products, final ProductType type) {
-		ArrayList<Product> filteredProducts = new ArrayList<>();
+    public static ArrayList<Product> filterByType(Collection<Product> products, final ProductType type) {
+        ArrayList<Product> filteredProducts = new ArrayList<>();
 
-        for (Iterator<Product> itr = products.iterator(); itr.hasNext();){
+        for (Iterator<Product> itr = products.iterator(); itr.hasNext(); ) {
             Product p = itr.next();
             if (p.getProductType() == type && !filteredProducts.contains(p))
                 filteredProducts.add(p);
         }
-		return filteredProducts;
+        return filteredProducts;
 
-	}
+    }
 
     /**
      * Creates an ArrayList containing all Products from the passed collection, that fit the passed IBrand.
      * <b>!note that the method returns a <u>new</u> Collection!</b>
+     *
      * @param products - Collection of Products, which to filter.
-     * @param brand - (e) Product.IBrand by which to filter.
+     * @param brand    - (e) Product.IBrand by which to filter.
      * @return new ArrayList<Product> containing all items that fit category passed.
      */
-	public static ArrayList<Product> filterByBrand(Collection<Product> products, final IBrand brand) {
-		ArrayList<Product> filteredProducts = new ArrayList<>();
+    public static ArrayList<Product> filterByBrand(Collection<Product> products, final IBrand brand) {
+        ArrayList<Product> filteredProducts = new ArrayList<>();
 
-        for (Iterator<Product> itr = products.iterator(); itr.hasNext();){
+        for (Iterator<Product> itr = products.iterator(); itr.hasNext(); ) {
             Product p = itr.next();
             if (p.getBrand() == brand && !filteredProducts.contains(p))
                 filteredProducts.add(p);
         }
 
-		return filteredProducts;
+        return filteredProducts;
 
-	}
+    }
+
+
+    /**
+     * Creates an ArrayList containing all Products from the passed collection, where Product.name starts with the name String passed.
+     * <b>!note that the method returns a <u>new</u> Collection!</b>
+     *
+     * @param products - Collection of Products, which to filter.
+     * @param name     - Name String by which to filter.
+     * @return new ArrayList<Product> containing all items that start with name String passed.
+     */
+    public static ArrayList<Product> filterByName(Collection<Product> products, String name) {
+        if (products == null || name == null)
+            return null;
+
+        name = name.trim().toLowerCase();
+
+        ArrayList<Product> filteredProducts = new ArrayList<>();
+
+        for (Product p : products) {
+            if (p == null)
+                continue;
+            if (p.getName().trim().toLowerCase().startsWith(name) || p.getName().trim().toLowerCase().contains(name))
+                filteredProducts.add(p);
+        }
+
+        return filteredProducts;
+    }
 
 }
