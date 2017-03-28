@@ -10,11 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mymag.mymag.R;
+import com.mymag.mymag.model.catalogs.Catalog;
+import com.mymag.mymag.model.users.User;
 
 import static com.mymag.mymag.R.id.totalvw;
 
 public class CartActivity extends AppCompatActivity {
     private int amountNum = 1;
+
+    private User loggedUser;
+    Catalog catalog = Catalog.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

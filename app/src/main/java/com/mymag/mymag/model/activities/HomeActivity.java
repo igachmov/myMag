@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.mymag.mymag.R;
+import com.mymag.mymag.model.catalogs.Catalog;
 import com.mymag.mymag.model.products.Computer;
 import com.mymag.mymag.model.products.Laptop;
 import com.mymag.mymag.model.products.Product;
@@ -25,6 +26,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Catalog.getInstance();
 
         Toolbar tb = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(tb);

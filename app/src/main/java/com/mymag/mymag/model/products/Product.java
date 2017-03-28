@@ -34,8 +34,9 @@ public abstract class Product implements Comparable<Product>, Serializable {
     private Category category;
     private ProductType productType;
     private IBrand brand;
+    private int imageID;
 
-    public Product(String name, String description, double price, int amount, Category category, ProductType product, IBrand brand) {
+    public Product(String name, String description, double price, int amount, Category category, ProductType product, IBrand brand,int imageID) {
 
         //TODO validation!
 
@@ -46,6 +47,7 @@ public abstract class Product implements Comparable<Product>, Serializable {
         this.category = category;
         this.productType = product;
         this.brand = brand;
+        this.imageID = imageID;
 
         //Why, oh why is LocalDate not supported in Android yet ?! :(
         dateAdded = new Date();
@@ -82,6 +84,9 @@ public abstract class Product implements Comparable<Product>, Serializable {
     }
     public int getID() {
         return this.id;
+    }
+    public int getImageID(){
+        return  this.imageID;
     }
 
 

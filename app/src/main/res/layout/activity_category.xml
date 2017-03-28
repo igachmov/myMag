@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.mymag.mymag.model.activities.CategoryActivity">
 
 
+    <Button
+        android:id="@+id/computer_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Computers"/>
+    <Button
+        android:id="@+id/laptop_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Laptops"/>
+    <Button
+        android:id="@+id/fridge_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Fridges"/>
+    <Button
+        android:id="@+id/oven_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Ovens"/>
+    <Button
+        android:id="@+id/smartphone_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Smart Phones"
+        />
+    <Button
+        android:id="@+id/television_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Televisions"
+        />
 
 
-</android.support.constraint.ConstraintLayout>
+
+
+
+</LinearLayout>

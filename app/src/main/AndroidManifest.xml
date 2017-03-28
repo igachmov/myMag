@@ -10,21 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".model.activities.LoginActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".model.activities.HomeActivity" />
         <activity android:name=".model.activities.RegisterActivity" />
         <activity android:name=".model.activities.CartActivity" />
-        <activity android:name=".model.activities.ProductActivity"
-            android:parentActivityName=".model.activities.HomeActivity"/>
+        <activity
+            android:name=".model.activities.ProductActivity"
+            android:parentActivityName=".model.activities.HomeActivity" />
         <activity android:name=".model.activities.UserActivity" />
         <activity android:name=".model.activities.CategoryActivity" />
         <activity android:name=".model.activities.ProductListActivity" />
-        <activity android:name=".model.activities.CheckOutActivity"></activity>
+        <activity android:name=".model.activities.CheckOutActivity" />
+        <activity android:name=".model.activities.CatalogActivity"></activity>
     </application>
 
 </manifest>
