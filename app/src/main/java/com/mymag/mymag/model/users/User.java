@@ -36,6 +36,7 @@ public class User {
     private String password;
     private String telNumber;
     private String email;
+    private int image;
     private String address;
     private final Type type;
 
@@ -43,12 +44,24 @@ public class User {
 
     private Cart userCart;
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setId(int id) {
         this.userID = id;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     //Конструктор за Юзера
@@ -81,6 +94,25 @@ public class User {
         return "Users [name=" + name + ", email=" + email + ", type=" + type + "]";
     }
 
+    public void setName(String name) {
+        if(!name.isEmpty())
+        this.name = name;
+    }
+
+    public void setTelNumber(String telNumber) {
+        if(!telNumber.isEmpty()&&telNumber.matches("08[0-9]{8}"))
+        this.telNumber = telNumber;
+    }
+
+    public void setEmail(String email) {
+        if(!email.isEmpty()&&email.matches("[a-z0-9-_]+@[a-z]+.[a-z]{2,4}"))
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        if(!address.isEmpty())
+        this.address = address;
+    }
 
     public String getTelNumber() {return telNumber;}
     public String getAddress() {return this.address;}

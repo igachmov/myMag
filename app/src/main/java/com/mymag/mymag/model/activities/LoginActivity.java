@@ -76,10 +76,8 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setId(c.getInt(c.getColumnIndex("_id")));
                                 User.setUser(user);
 
-
-
-
                                 c.close();
+                                finish();
                                 break;
                             }
                         }while (c.moveToNext());

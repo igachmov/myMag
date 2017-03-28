@@ -1,5 +1,6 @@
 package com.mymag.mymag.model.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -9,23 +10,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.mymag.mymag.R;
 import com.mymag.mymag.model.products.Computer;
 import com.mymag.mymag.model.products.Laptop;
 import com.mymag.mymag.model.products.Product;
+import com.mymag.mymag.model.users.User;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
     Random rand = new Random();
+    public static Activity home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        home=this;
         Toolbar tb = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(tb);
 
@@ -83,8 +87,16 @@ public class HomeActivity extends AppCompatActivity {
                         destination = ProductListActivity.class;
                         break;
                     case R.id.user_redirect:
-                        destination = UserActivity.class;
-                        break;
+                        if(User.user!=null){
+                            destination = UserActivity.class;
+                            break;
+                        }
+                        else {
+                                Toast.makeText(HomeActivity.this,"Please registry first!",Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+
+
                 }
 
                 i.setClass(HomeActivity.this, destination);
