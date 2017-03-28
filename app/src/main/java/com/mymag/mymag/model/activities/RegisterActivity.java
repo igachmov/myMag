@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                         email.setError("Please check your email!");
                     }
 
-                    if (phone.getText().toString().trim().isEmpty()){
+                    if (phone.getText().toString().trim().isEmpty()||!phone.getText().toString().matches("08[0-9]{8}")){
                         phone.setError("Please enter your phone!");
                     }
                     if (address.getText().toString().trim().isEmpty()){

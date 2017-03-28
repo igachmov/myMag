@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mymag.mymag.R;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     Button goToRegister;
     EditText email;
     EditText password;
+    ImageView logo;
     int id;
 
 
@@ -31,8 +33,10 @@ public class LoginActivity extends AppCompatActivity {
         password=(EditText)findViewById(R.id.password_in);
         goToRegister= (Button)findViewById(R.id.Button_Register);
         logIn= (Button)findViewById(R.id.Button_logIn_in);
+        logo= (ImageView) findViewById(R.id.login_image_logo);
         final Intent register = new Intent(LoginActivity.this,RegisterActivity.class);
         final Intent homeActivity = new Intent(LoginActivity.this,HomeActivity.class);
+        logo.setImageResource(R.drawable.logo_512x512);
 
 
         {
