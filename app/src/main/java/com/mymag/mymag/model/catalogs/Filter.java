@@ -1,5 +1,6 @@
 package com.mymag.mymag.model.catalogs;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.mymag.mymag.model.products.Product;
@@ -187,7 +188,7 @@ public abstract class Filter {
      * @param name     - Name String by which to filter.
      * @return new ArrayList<Product> containing all items that start with name String passed.
      */
-    public static ArrayList<Product> filterByName(Collection<Product> products, String name) {
+    public static ArrayList<Product> filterByName(@NonNull Collection<Product> products, @NonNull String name) {
         if (products == null || name == null)
             return null;
 
