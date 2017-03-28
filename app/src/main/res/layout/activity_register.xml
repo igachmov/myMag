@@ -100,7 +100,6 @@
            android:shadowColor="@color/colorAccent"
            android:text="DONE"
            android:textAlignment="center"
-           android:textColor="#0b268f"
            android:textSize="15sp" />
 
        <Button
@@ -114,7 +113,6 @@
            android:shadowColor="@color/colorAccent"
            android:text="CANCEL"
            android:textAlignment="center"
-           android:textColor="#0b268f"
            android:textSize="15sp" />
    </LinearLayout>
    </ScrollView>

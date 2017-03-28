@@ -36,7 +36,7 @@ public class User {
     private String password;
     private String telNumber;
     private String email;
-    private int image;
+    private String imagePath;
     private String address;
     private final Type type;
 
@@ -54,6 +54,15 @@ public class User {
 
     public void setId(int id) {
         this.userID = id;
+    }
+
+    public void setImagePath(String imagePath) {
+        if(!imagePath.isEmpty())
+        this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 
     public String getEmail() {
