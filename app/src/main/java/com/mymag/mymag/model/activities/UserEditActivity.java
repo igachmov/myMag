@@ -1,11 +1,15 @@
 package com.mymag.mymag.model.activities;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -129,6 +133,11 @@ public class UserEditActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_app_bar, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, ProductListActivity.class)));
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -137,9 +146,14 @@ public class UserEditActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.actionbutton_to_cart:
                 startActivity(new Intent(this, CartActivity.class));
+                break;
+            case R.id.actionbutton_to_user:
+                startActivity(new Intent(this, UserActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
+    
     private File getFile(){
         File folder= new File("sdcard/camera_app");
         if(!folder.exists()){

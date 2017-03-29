@@ -73,6 +73,10 @@ public class ProductListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.actionbutton_to_cart:
                 startActivity(new Intent(this, CartActivity.class));
+                break;
+            case R.id.actionbutton_to_user:
+                startActivity(new Intent(this, UserActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -83,10 +87,7 @@ public class ProductListActivity extends AppCompatActivity {
             if (Intent.ACTION_SEARCH.equals(i.getAction())) {
                 String query = i.getStringExtra(SearchManager.QUERY);
                 if (query == null) return null;
-
-                products = Filter.filterByName(products, query);
-                Toast.makeText(this, " " + products.size() + " filtered", Toast.LENGTH_LONG).show();
-
+                products = Filter.filterByName(Catalog.getAllProducts(), query);
                 return products;
             } else if (i.hasExtra("PRODUCT_LIST")) {
                 products = new ArrayList<>((ArrayList<Product>) i.getSerializableExtra("PRODUCT_LIST"));

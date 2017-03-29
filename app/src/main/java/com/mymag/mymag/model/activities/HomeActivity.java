@@ -2,6 +2,7 @@ package com.mymag.mymag.model.activities;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
-        ab.setDisplayShowTitleEnabled(false);
 
         recyclerNewProducts = (RecyclerView) findViewById(R.id.home_recycler_new_products);
         recyclerOtherProducts = (RecyclerView) findViewById(R.id.home_recycler_random_products);
@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         categoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ProductListActivity.class));
+                startActivity(new Intent(HomeActivity.this, CategoryActivity.class));
             }
         });
     }
@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, ProductListActivity.class)));
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -76,6 +76,10 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.actionbutton_to_cart:
                 startActivity(new Intent(this, CartActivity.class));
+                break;
+            case R.id.actionbutton_to_user:
+                startActivity(new Intent(this, UserActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

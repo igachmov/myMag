@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mymag.mymag">
+
     <uses-feature android:name="android.hardware.camera2"></uses-feature>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
@@ -23,7 +24,11 @@
 
         <activity
             android:name=".model.activities.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchResultsActivity" />
+        </activity>
 
 
         <activity
@@ -35,19 +40,31 @@
             android:name=".model.activities.CartActivity"
 
             android:parentActivityName=".model.activities.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
 
 
         <activity
             android:name=".model.activities.ProductActivity"
             android:parentActivityName=".model.activities.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchResultsActivity" />
+        </activity>
 
 
         <activity
             android:name=".model.activities.UserActivity"
             android:parentActivityName=".model.activities.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchResultsActivity" />
+        </activity>
 
 
         <activity
@@ -73,8 +90,12 @@
             android:name=".model.activities.CheckOutActivity"
             android:parentActivityName=".model.activities.HomeActivity"
             android:screenOrientation="portrait" />
-        
-        <activity android:name=".model.activities.UserEditActivity" />
+
+        <activity android:name=".model.activities.UserEditActivity">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchResultsActivity" />
+        </activity>
 
     </application>
 
