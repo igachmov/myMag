@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -125,7 +126,7 @@ public class UserActivity extends AppCompatActivity {
             textPhone.setText(User.user.getTelNumber());
             textAddress.setText(User.user.getAddress());
             textEmail.setText(User.user.getEmail());
-            imageUser.setImageResource(Integer.parseInt(User.user.getImagePath()));
+            imageUser.setImageDrawable(Drawable.createFromPath(User.user.getImagePath()));
         }
     }
     @Override

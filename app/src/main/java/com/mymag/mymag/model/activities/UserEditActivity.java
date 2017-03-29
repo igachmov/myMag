@@ -157,10 +157,5 @@ public class UserEditActivity extends AppCompatActivity {
         makePicture.setVisibility(View.INVISIBLE);
 
     }
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-
 }
+
