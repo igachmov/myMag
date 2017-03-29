@@ -4,12 +4,12 @@ import java.util.HashMap;
 
 public class Television extends Product {
 
-	enum TVModels implements IBrand {
+	public enum TVModels implements IBrand {
 		PANASONIC, LG, SAMSUNG, STARLIGHT
 	}
 
-	public Television(String name, String description, double price, int amount, TVModels brand) {
-		super(name, description, price, amount, Category.IT, ProductType.TELEVISION, brand);
+	public Television(String name, String description, double price, int amount, TVModels brand,int imageID) {
+		super(name, description, price, amount, Category.IT, ProductType.TELEVISION, brand,imageID);
 	}
 
 	@Override

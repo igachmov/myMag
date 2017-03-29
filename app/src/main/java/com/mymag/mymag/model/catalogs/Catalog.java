@@ -1,6 +1,8 @@
 package com.mymag.mymag.model.catalogs;
 
 
+import android.widget.Toast;
+
 import com.mymag.mymag.model.products.Product;
 import com.mymag.mymag.model.products.Product.*;
 
@@ -8,20 +10,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
 public class Catalog {
-
+	public String key;
 	private static Catalog instance;
 
-	private HashMap<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> catalog;
+	private HashMap<Category, HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>> catalog;
 
 	private Catalog() {
 		catalog = new HashMap<>();
-		catalog.put(Category.IT, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
-		catalog.put(Category.KITCHEN, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
-		catalog.put(Category.MOBILES, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
+		catalog.put(Category.IT, new HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>());
+		catalog.put(Category.KITCHEN, new HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>());
+		catalog.put(Category.MOBILES, new HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>());
 	}
 
 	/**
@@ -41,15 +45,34 @@ public class Catalog {
 	 * @param name
 	 *            - Product name to search for.
 	 */
+	public ArrayList<Product> product(String name){
+		ArrayList<Product> returnProduct = new ArrayList<>();
+		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>> e : catalog.entrySet()) {
+			for (Entry<ProductType, HashMap<IBrand, HashSet<Product>>> e1 : e.getValue().entrySet()) {
+				if (e1.getKey().toString().equals(name)) {
+					for (Entry<IBrand, HashSet<Product>> e2 : e1.getValue().entrySet()) {
+						for (Product wo : e2.getValue()) {
+							returnProduct.add(wo);
+						}
+					}
+				}
+			}
+		}
+
+		return returnProduct;
+
+
+	}
+
 	public void searchInCatalog(String name) {
 		if (name == null || name.isEmpty())
 			return;
 
 		ArrayList<Product> matchingItems = new ArrayList<>();
 
-		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet())
-			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet())
-				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet())
+		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>> e : catalog.entrySet())
+			for (Entry<ProductType, HashMap<IBrand, HashSet<Product>>> e1 : e.getValue().entrySet())
+				for (Entry<IBrand, HashSet<Product>> e2 : e1.getValue().entrySet())
 					for (Product wo : e2.getValue())
 						if (wo.getName().startsWith(name))
 							matchingItems.add(wo);
@@ -59,7 +82,7 @@ public class Catalog {
 			return;
 		}
 
-		// no lambdas in J1.7 AND NO ArrayList.sort(Comparator) .... :(
+		// no lambdas in J1.7 AND no ArrayList.sort(Comparator) .... :(
 		Collections.sort(matchingItems, new Comparator<Product>() {
 			@Override
 			public int compare(Product o1, Product o2) {
@@ -101,24 +124,25 @@ public class Catalog {
 		ProductType prodType = pro.getProductType();
 
 		if (!catalog.containsKey(cat)) {
-			catalog.put(cat, new HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>());
+			catalog.put(cat, new HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>());
 		}
 		if (!catalog.get(cat).containsKey(prodType)) {
-			catalog.get(cat).put(prodType, new HashMap<IBrand, TreeSet<Product>>());
+			catalog.get(cat).put(prodType, new HashMap<IBrand, HashSet<Product>>());
 		}
 		if (!catalog.get(cat).get(prodType).containsKey(brand)) {
-			catalog.get(cat).get(prodType).put(brand, new TreeSet<Product>());
+			catalog.get(cat).get(prodType).put(brand, new HashSet<Product>());
 		}
 
 		return catalog.get(cat).get(prodType).get(brand).add(pro);
 	}
 
+	@Deprecated
 	public void printCatalog() {
-		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
+		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, HashSet<Product>>>> e : catalog.entrySet()) {
 			System.out.println("------------" + e.getKey() + "------------");
-			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
+			for (Entry<ProductType, HashMap<IBrand, HashSet<Product>>> e1 : e.getValue().entrySet()) {
 				System.out.println("     *****" + e1.getKey() + "*****");
-				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
+				for (Entry<IBrand, HashSet<Product>> e2 : e1.getValue().entrySet()) {
 					System.out.println("         ========" + e2.getKey() + "========");
 					for (Product wo : e2.getValue()) {
 						System.out.println("                ########" + wo + "########");
@@ -128,29 +152,28 @@ public class Catalog {
 		}
 	}
 
-	public void updateProductAmount(Product p, int productAmount) {
-		if (p == null)
-			return;
-		Category cat = p.getCategory();
-		ProductType prodType = p.getProductType();
-		IBrand brand = p.getBrand();
+	public boolean updateProductAmount(Product p, int amount) {
+        if (p == null)
+            return false;
+        Category cat = p.getCategory();
+        ProductType prodType = p.getProductType();
+        IBrand brand = p.getBrand();
 
-		for (Entry<Category, HashMap<ProductType, HashMap<IBrand, TreeSet<Product>>>> e : catalog.entrySet()) {
-			for (Entry<ProductType, HashMap<IBrand, TreeSet<Product>>> e1 : e.getValue().entrySet()) {
-				for (Entry<IBrand, TreeSet<Product>> e2 : e1.getValue().entrySet()) {
-					for (Product wo : e2.getValue()) {
-						if (wo.getName().equals(p.getName())) {
-							//TODO dangerous!
-							if (!(wo.getAmount() - p.getAmount() < 0)) {
-								wo.setAmount(wo.getAmount() - productAmount);
-							}
-							// TODO check if wo.amount less than amount being
-							// ordered (p.amount)
-						}
-					}
-				}
-			}
-		}
-	}
-	
+        try {
+            HashSet<Product> brandSet = catalog.get(cat).get(prodType).get(brand);
+            for (Product prod : brandSet) {
+                if (p.equals(prod)) {
+                    if (p.getAmount() < amount)
+                        return false;
+                    p.setAmount(p.getAmount() - amount);
+                }
+            }
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return false;
+    }
+
+
+
 }

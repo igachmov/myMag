@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mymag.mymag.R;
 import com.mymag.mymag.model.products.Product;
+import com.mymag.mymag.model.users.User;
 
 import java.util.List;
 
@@ -19,11 +21,11 @@ import java.util.List;
 
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyHolderView> {
 
-    private List<Product> carProducts;
+    private List<User.Cart.CartProduct> carProducts;
     private Context context;
 
-    public CarAdapter(List<Product> carProducts, Context context) {
-        this.carProducts = carProducts;
+    public CarAdapter(Context context, List<User.Cart.CartProduct> products) {
+        this.carProducts = products;
         this.context = context;
     }
 
@@ -38,10 +40,10 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyHolderView> {
 
     @Override
     public void onBindViewHolder(CarAdapter.MyHolderView holder, int position) {
-            Product product =carProducts.get(position);
-            holder.name.setText(product.getName());
-            holder.price.setText(product.getPrice()+"");
-            holder.pic.setImageResource(product.getImageID());
+            User.Cart.CartProduct product =carProducts.get(position);
+            holder.name.setText(product.getProduct().getName());
+            holder.price.setText(product.getProduct().getPrice()+"");
+            holder.pic.setImageResource(product.getProduct().getImageID());
 
     }
 
@@ -54,13 +56,16 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyHolderView> {
         ImageView pic;
         TextView name;
         TextView price;
-
+        Button plus;
+        Button minus;
 
         public MyHolderView(View row) {
             super(row);
             pic= (ImageView) row.findViewById(R.id.adapter_image_product);
             name = (TextView) row.findViewById(R.id.adapter_name_product);
             price = (TextView) row.findViewById(R.id.adapter_price_product);
+            plus  = (Button) row.findViewById(R.id.plus);
+            minus = (Button) row.findViewById(R.id.minus);
 
         }
     }

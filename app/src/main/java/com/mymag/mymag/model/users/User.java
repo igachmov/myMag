@@ -44,6 +44,10 @@ public class User {
         this.userID = id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     //Конструктор за Юзера
     public User(String name, String password, String email, String telNumber, String address, Type type) {
         if (!name.isEmpty())
@@ -100,14 +104,13 @@ public class User {
     }
 
 
-    class Cart {
+    public class Cart {
 
         public HashSet<CartProduct> getProductsInCart() {
             return productsInCart;
         }
 
         private HashSet<CartProduct> productsInCart;
-
         private Cart() {
             this.productsInCart = new HashSet<>();
         }

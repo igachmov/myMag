@@ -13,16 +13,16 @@ public class Computer extends Product {
     private String processor;
     private String operatingSystem;
     private int year;
-    public Computer(String name, String description, double price, int amount, ComputerModel brand, int ram, int hardDisk, String processor,
-                    String operatingSystem, int year) {
-        super(name, description, price, amount, Category.IT, Product.ProductType.COMPUTER, brand);
+    private IBrand brand;
 
+    public Computer(String name, String description, double price, int amount, IBrand brand, int imageID, int ram, int hardDisk, String processor, String operatingSystem, int year) {
+        super(name, description, price, amount,  Category.IT, Product.ProductType.COMPUTER, brand, imageID);
         this.ram = ram;
         this.hardDisk = hardDisk;
         this.processor = processor;
         this.operatingSystem = operatingSystem;
         this.year = year;
-
+        this.brand=brand;
     }
 
     @Override
