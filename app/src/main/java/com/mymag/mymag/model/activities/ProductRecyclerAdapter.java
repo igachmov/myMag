@@ -49,6 +49,7 @@ class ProductRecyclerAdapter extends RecyclerView.Adapter<com.mymag.mymag.model.
         holder.itemView.setTag(p);
         holder.title.setText(p.getName());
         holder.photo.setImageDrawable(ContextCompat.getDrawable(c, R.drawable.photo_not_found));
+        holder.price.setText("" + p.getPrice() + "$");
     }
 
     @Override
@@ -61,12 +62,14 @@ class ProductRecyclerAdapter extends RecyclerView.Adapter<com.mymag.mymag.model.
 
         ImageView photo;
         TextView title;
+        TextView price;
 
         public ProductRecyclerViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             photo = (ImageView) itemView.findViewById(R.id.productlist_photo);
             title = (TextView) itemView.findViewById(R.id.productlist_title);
+            price = (TextView) itemView.findViewById(R.id.productlist_price);
         }
 
         @Override

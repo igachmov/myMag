@@ -1,35 +1,38 @@
 package com.mymag.mymag.model.activities;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.mymag.mymag.R;
-import com.mymag.mymag.model.products.Computer;
-import com.mymag.mymag.model.products.Laptop;
-import com.mymag.mymag.model.products.Product;
-import com.mymag.mymag.model.users.User;
-
-import java.util.ArrayList;
-import java.util.Random;
+import com.mymag.mymag.model.catalogs.Catalog;
 
 public class HomeActivity extends AppCompatActivity {
-    Random rand = new Random();
+
     public static Activity home;
+    private RecyclerView recyclerNewProducts;
+    private RecyclerView recyclerOtherProducts;
+    private Button categoriesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        home=this;
+
+        home = this;
+
         Toolbar tb = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(tb);
 
@@ -38,93 +41,33 @@ public class HomeActivity extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
         ab.setDisplayShowTitleEnabled(false);
 
-        /**
-         * Added buttons leading to the rest of the activities to facilitate easier navigation while implementing new features.
-         * Not meant to be permanent - add and remove as needed.
-         *      ~Simo
-         */
-        Button cart = (Button) findViewById(R.id.cart_redirect);
-        Button category = (Button) findViewById(R.id.category_redirect);
-        Button checkOut = (Button) findViewById(R.id.check_out_redirect);
-        Button logIn = (Button) findViewById(R.id.log_in_redirect);
-        Button register = (Button) findViewById(R.id.register_redirect);
-        Button product = (Button) findViewById(R.id.product_redirect);
-        Button productList = (Button) findViewById(R.id.product_list_redirect);
-        Button user = (Button) findViewById(R.id.user_redirect);
+        recyclerNewProducts = (RecyclerView) findViewById(R.id.home_recycler_new_products);
+        recyclerOtherProducts = (RecyclerView) findViewById(R.id.home_recycler_random_products);
 
+        recyclerNewProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerOtherProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        Button.OnClickListener clickListener = new View.OnClickListener() {
+        ProductRecyclerAdapter recyclerAdapter = new ProductRecyclerAdapter(this, R.layout.view_product_tile, Catalog.getNewestProducts());
+        recyclerNewProducts.setAdapter(recyclerAdapter);
+        recyclerOtherProducts.setAdapter(recyclerAdapter);
+
+        categoriesButton = (Button) findViewById(R.id.home_categories_button);
+        categoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent i = new Intent();
-
-                int id = v.getId();
-                Class destination = HomeActivity.class;
-
-                switch (id) {
-                    case R.id.cart_redirect:
-                        destination = CartActivity.class;
-                        break;
-                    case R.id.category_redirect:
-                        destination = CategoryActivity.class;
-                        break;
-                    case R.id.check_out_redirect:
-                        destination = CheckOutActivity.class;
-                        break;
-                    case R.id.log_in_redirect:
-                        destination = LoginActivity.class;
-                        break;
-                    case R.id.register_redirect:
-                        destination = RegisterActivity.class;
-                        break;
-                    case R.id.product_redirect:
-                        i.putExtra("Product", new Computer("TEST_NAME", "THIS IS A TEST DESCRIPTION", rand.nextInt(10_000), 33, Computer.ComputerModel.ASUS, 126, 1000, "Fyzen 7", "OS-Y", 1998));
-                        destination = ProductActivity.class;
-                        break;
-                    case R.id.product_list_redirect:
-                        i.putExtra(getString(R.string.PRODUCT_LIST_KEY),generateProductList(100));
-                        destination = ProductListActivity.class;
-                        break;
-                    case R.id.user_redirect:
-                        if(User.user!=null){
-                            destination = UserActivity.class;
-                            break;
-                        }
-                        else {
-                                Toast.makeText(HomeActivity.this,"Please registry first!",Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-
-
-                }
-
-                i.setClass(HomeActivity.this, destination);
-                startActivity(i);
+                startActivity(new Intent(HomeActivity.this, CategoryActivity.class));
             }
-        };
-
-        cart.setOnClickListener(clickListener);
-        category.setOnClickListener(clickListener);
-        checkOut.setOnClickListener(clickListener);
-        logIn.setOnClickListener(clickListener);
-        product.setOnClickListener(clickListener);
-        productList.setOnClickListener(clickListener);
-        register.setOnClickListener(clickListener);
-        user.setOnClickListener(clickListener);
-    }
-
-    private ArrayList<Product> generateProductList(int size) {
-        ArrayList<Product> products = new ArrayList<>();
-        if (size <= 0) size = 25;
-        for (int i = 0; i < size; i++)
-            products.add(new Laptop("TestName " + i, "TestDescription " + i, rand.nextInt(10_000), rand.nextInt(100) + 1, Laptop.LaptopModel.ASUS, (rand.nextInt(6) + 1) * 4, 1000 + i, "TestCPU " + i, "OSY", 1995));
-        return products;
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_app_bar, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return super.onCreateOptionsMenu(menu);
     }
 

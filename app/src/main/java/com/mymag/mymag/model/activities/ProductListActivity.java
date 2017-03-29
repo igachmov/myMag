@@ -5,24 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mymag.mymag.R;
+import com.mymag.mymag.model.catalogs.Catalog;
 import com.mymag.mymag.model.catalogs.Filter;
 import com.mymag.mymag.model.products.Product;
 
@@ -34,9 +28,9 @@ public class ProductListActivity extends AppCompatActivity {
     //TODO - review possible stability problems
 
     private static String PRODUCT_LIST_KEY;
+    private static ArrayList<Product> products;
     private RecyclerView recyclerView;
     private ProductRecyclerAdapter recyclerAdapter;
-    private static ArrayList<Product> products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,22 +79,21 @@ public class ProductListActivity extends AppCompatActivity {
 
     @Nullable
     private ArrayList<Product> handleIntent(Intent i) {
-        if (i == null)
-            return null;
-        if (Intent.ACTION_SEARCH.equals(i.getAction())) {
-            String query = i.getStringExtra(SearchManager.QUERY);
-            if (query == null) return null;
+        if (i != null) {
+            if (Intent.ACTION_SEARCH.equals(i.getAction())) {
+                String query = i.getStringExtra(SearchManager.QUERY);
+                if (query == null) return null;
 
-            products = Filter.filterByName(products,query);
-            Toast.makeText(this," " +products.size() + " filtered",Toast.LENGTH_LONG).show();
+                products = Filter.filterByName(products, query);
+                Toast.makeText(this, " " + products.size() + " filtered", Toast.LENGTH_LONG).show();
 
-            return products;
+                return products;
+            } else if (i.hasExtra("PRODUCT_LIST")) {
+                products = new ArrayList<>((ArrayList<Product>) i.getSerializableExtra("PRODUCT_LIST"));
+                return products;
+            }
         }
-        else if (i.hasExtra("PRODUCT_LIST")) {
-            products = new ArrayList<>((ArrayList<Product>) i.getSerializableExtra("PRODUCT_LIST"));
-            return products;
-        }
-        return null;
+        return (ArrayList) Catalog.getAllProducts();
     }
 }
 
