@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
                  if (name.getText().toString().isEmpty()||(email.getText().toString().isEmpty()||! email.getText().toString()
                 .matches(getString(R.string.Regex)))||
                         password.getText().toString().isEmpty()||repPassword.getText().toString().isEmpty()||
-                        phone.getText().toString().isEmpty()||address.getText().toString().isEmpty()||
+                         !phone.getText().toString().matches("08[0-9]{8}")||address.getText().toString().isEmpty()||
                         !password.getText().toString().equals(repPassword.getText().toString())||
                          password.getText().length()<4||repPassword.getText().toString().length()<4)
                 {
@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                         email.setError("Please check your email!");
                     }
 
-                    if (phone.getText().toString().trim().isEmpty()){
+                    if (phone.getText().toString().trim().isEmpty()||!phone.getText().toString().matches("08[0-9]{8}")){
                         phone.setError("Please enter your phone!");
                     }
                     if (address.getText().toString().trim().isEmpty()){

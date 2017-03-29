@@ -16,5 +16,10 @@
         android:title="Cart"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/actionbutton_to_user"
+        android:icon="@drawable/ic_user"
+        android:title="User details"
+        app:showAsAction="never"/>
 
 </menu>

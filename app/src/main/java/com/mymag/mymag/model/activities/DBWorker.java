@@ -36,4 +36,13 @@ public class DBWorker  extends DBHelper {
         open();
         db.delete("users",null,null);
     }
+    public  void delete(int id){
+        open();
+        db.delete("users", "_id="+id,null);
+
+    }
+    public void edit(ContentValues query,int id){
+        open();
+        db.update("users",query,"_id="+id,null);
+    }
 }

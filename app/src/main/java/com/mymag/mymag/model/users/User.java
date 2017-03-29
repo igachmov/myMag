@@ -11,6 +11,9 @@ import java.util.UUID;
 
 public class User {
 
+
+    public boolean haveAPicture=false;
+
     public enum Type {
         ADMIN, CLIENT
     }
@@ -21,7 +24,7 @@ public class User {
     private  int userID;
 
 
-     public static User user;
+    public static User user;
 
     public static void setUser(User user) {
         if (user!=null){
@@ -33,6 +36,7 @@ public class User {
     private String password;
     private String telNumber;
     private String email;
+    private String imagePath;
     private String address;
     private final Type type;
 
@@ -40,12 +44,33 @@ public class User {
 
     private Cart userCart;
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setId(int id) {
         this.userID = id;
     }
 
+    public void setImagePath(String imagePath) {
+        if(!imagePath.isEmpty())
+            this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     //Конструктор за Юзера
@@ -63,6 +88,7 @@ public class User {
             this.address=address;
         }
 
+
         this.type = type;
         if (type == Type.CLIENT) {
             userCart = new Cart();
@@ -77,6 +103,25 @@ public class User {
         return "Users [name=" + name + ", email=" + email + ", type=" + type + "]";
     }
 
+    public void setName(String name) {
+        if(!name.isEmpty())
+            this.name = name;
+    }
+
+    public void setTelNumber(String telNumber) {
+        if(!telNumber.isEmpty()&&telNumber.matches("08[0-9]{8}"))
+            this.telNumber = telNumber;
+    }
+
+    public void setEmail(String email) {
+        if(!email.isEmpty()&&email.matches("[a-z0-9-_]+@[a-z]+.[a-z]{2,4}"))
+            this.email = email;
+    }
+
+    public void setAddress(String address) {
+        if(!address.isEmpty())
+            this.address = address;
+    }
 
     public String getTelNumber() {return telNumber;}
     public String getAddress() {return this.address;}
@@ -111,6 +156,7 @@ public class User {
         }
 
         private HashSet<CartProduct> productsInCart;
+
         private Cart() {
             this.productsInCart = new HashSet<>();
         }

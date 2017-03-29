@@ -14,8 +14,7 @@
             android:id="@+id/adapter_image_product"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/laptop_lenovo" />
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="0dp"

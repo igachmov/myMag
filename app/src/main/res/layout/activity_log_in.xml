@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity__log_in"
+    android:background="@drawable/userbackground"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
@@ -27,7 +28,7 @@
         android:hint="EMAIL"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
-        android:textColorHint="#46c0e2"
+        android:textColorHint="#4b7683"
         android:textSize="20sp" />
 
     <EditText
@@ -38,7 +39,7 @@
         android:inputType="textPassword"
         android:hint="PASSWORD"
 
-        android:textColorHint="#46c0e2"
+        android:textColorHint="#4b7683"
         android:textAlignment="center"
         android:textSize="20sp"
        />
@@ -52,11 +53,12 @@
             android:layout_width="0dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:alpha="0.7"
             android:layout_height="wrap_content"
-            android:background="#32a8e7"
+            android:background="@drawable/mybutton"
             android:layout_marginTop="15dp"
             android:text="Log In"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textAlignment="center"/>
 
         <Button
@@ -64,14 +66,21 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
+            android:alpha="0.7"
             android:layout_height="wrap_content"
-            android:background="#32a8e7"
+            android:background="@drawable/mybutton"
             android:layout_marginTop="15dp"
             android:text="Register"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textAlignment="center"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/login_image_logo"
+        android:alpha="0.3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 
