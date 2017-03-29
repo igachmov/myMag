@@ -144,6 +144,7 @@ public class ProductActivity extends AppCompatActivity {
             product = (Product) getArguments().getSerializable(PRODUCT_KEY);
 
             description.setText(product.getDescription());
+            imageView.setImageResource(product.getImageID());
             price.setText("price: " + String.valueOf(product.getPrice() + "$"));
 
             return v;
