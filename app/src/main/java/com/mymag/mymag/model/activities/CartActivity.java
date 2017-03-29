@@ -50,23 +50,7 @@ public class CartActivity extends AppCompatActivity {
         recycleAdapter.setAdapter(adapter);
         recycleAdapter.setLayoutManager(new LinearLayoutManager(this));
 
-       // plus.setOnClickListener(new View.OnClickListener() {
-       //     @Override
-      //      public void onClick(View v) {
-      //         amountNum++;
-       //         amount.setText(new Integer(amountNum).toString());
-//
-     //     }
-       // });
-       // minus.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-       //       if(amountNum>0) {
-       //           amountNum--;
-        //          amount.setText(new Integer(amountNum).toString());
-        //      }
-        //    }
-      //  });
+
 
     }
 }

@@ -47,10 +47,8 @@ public class CategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 key="COMPUTER";
                 product = Catalog.getInstance().product(key);
-               Intent intent = new Intent(CategoryActivity.this,CatalogActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("List",product);
-                intent.putExtras(extras);
+               Intent intent = new Intent(CategoryActivity.this,ProductListActivity.class);
+                intent.putExtra(getString(R.string.PRODUCT_LIST_KEY),product);
                 startActivity(intent);
             }
         });
@@ -60,10 +58,8 @@ public class CategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 key="LAPTOP";
                 product = Catalog.getInstance().product(key);
-                Intent intent = new Intent(CategoryActivity.this,CatalogActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("List",product);
-                intent.putExtras(extras);
+                Intent intent = new Intent(CategoryActivity.this,ProductListActivity.class);
+                intent.putExtra(getString(R.string.PRODUCT_LIST_KEY),product);
                 startActivity(intent);
             }
         });
@@ -72,10 +68,8 @@ public class CategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 key="FRIDGE";
                 product = Catalog.getInstance().product(key);
-                Intent intent = new Intent(CategoryActivity.this,CatalogActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("List",product);
-                intent.putExtras(extras);
+                Intent intent = new Intent(CategoryActivity.this,ProductListActivity.class);
+                intent.putExtra(getString(R.string.PRODUCT_LIST_KEY),product);
                 startActivity(intent);
             }
         });
@@ -84,10 +78,8 @@ public class CategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 key="OVEN";
                 product = Catalog.getInstance().product(key);
-                Intent intent = new Intent(CategoryActivity.this,CatalogActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("List",product);
-                intent.putExtras(extras);
+                Intent intent = new Intent(CategoryActivity.this,ProductListActivity.class);
+                intent.putExtra(getString(R.string.PRODUCT_LIST_KEY),product);
                 startActivity(intent);
             }
         });
@@ -96,10 +88,8 @@ public class CategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 key="SMARTPHONE";
                 product = Catalog.getInstance().product(key);
-                Intent intent = new Intent(CategoryActivity.this,CatalogActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("List",product);
-                intent.putExtras(extras);
+                Intent intent = new Intent(CategoryActivity.this,ProductListActivity.class);
+                intent.putExtra(getString(R.string.PRODUCT_LIST_KEY),product);
                 startActivity(intent);
             }
         });
@@ -108,10 +98,8 @@ public class CategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 key="TELEVISION";
                 product = Catalog.getInstance().product(key);
-                Intent intent = new Intent(CategoryActivity.this,CatalogActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("List",product);
-                intent.putExtras(extras);
+                Intent intent = new Intent(CategoryActivity.this,ProductListActivity.class);
+                intent.putExtra(getString(R.string.PRODUCT_LIST_KEY),product);
                 startActivity(intent);
             }
         });

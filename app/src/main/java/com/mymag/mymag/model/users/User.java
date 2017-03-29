@@ -300,6 +300,18 @@ public class User {
                     return this.product.equals(obj);
                 return obj instanceof CartProduct && this.product.equals(((CartProduct) obj).product);
             }
+            public int IncrementAmount(){
+                if(this.amount+1<this.product.getAmount()){
+                    return  this.amount;
+                }
+                return  ++this.amount;
+            }
+            public int DecrementAmount(){
+                if(this.amount<1){
+                    return  this.amount;
+                }
+                return  --this.amount;
+            }
 
             public Product getProduct(){
                 return this.product;
