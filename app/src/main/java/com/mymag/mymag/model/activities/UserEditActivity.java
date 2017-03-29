@@ -153,6 +153,7 @@ public class UserEditActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String path = "sdcard/camera_app/cam_image.jpg";
         User.user.setImagePath(path);
+        User.user.haveAPicture=true;
         cancel.setVisibility(View.INVISIBLE);
         makePicture.setVisibility(View.INVISIBLE);
 

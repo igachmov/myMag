@@ -12,7 +12,7 @@ import java.util.UUID;
 public class User {
 
 
-
+    public boolean haveAPicture=false;
 
     public enum Type {
         ADMIN, CLIENT

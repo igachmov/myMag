@@ -60,7 +60,12 @@ public class UserActivity extends AppCompatActivity {
         edit= (Button) findViewById(R.id.user_button_edit);
         User user = User.user;
 
-             imageUser.setImageResource(R.drawable.user);
+        if(User.user.haveAPicture){
+            imageUser.setImageDrawable(Drawable.createFromPath(User.user.getImagePath()));
+        }else{
+            imageUser.setImageResource(R.drawable.user);
+        }
+            
              imagePhone.setImageResource(R.drawable.phone);
              imageEmail.setImageResource(R.drawable.email);
              imageAddress.setImageResource(R.drawable.address);
@@ -126,7 +131,10 @@ public class UserActivity extends AppCompatActivity {
             textPhone.setText(User.user.getTelNumber());
             textAddress.setText(User.user.getAddress());
             textEmail.setText(User.user.getEmail());
-            imageUser.setImageDrawable(Drawable.createFromPath(User.user.getImagePath()));
+            if(User.user.haveAPicture){
+                imageUser.setImageDrawable(Drawable.createFromPath(User.user.getImagePath()));
+            }
+
         }
     }
     @Override
