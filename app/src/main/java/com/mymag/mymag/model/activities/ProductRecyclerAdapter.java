@@ -50,7 +50,7 @@ class ProductRecyclerAdapter extends RecyclerView.Adapter<com.mymag.mymag.model.
         Product p = data.get(position);
         holder.itemView.setTag(p);
         holder.title.setText(p.getName());
-        holder.photo.setImageDrawable(ContextCompat.getDrawable(c, R.drawable.photo_not_found));
+        holder.photo.setImageResource(p.getImageID());
         holder.price.setText("" + p.getPrice() + "$");
     }
 
