@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         categoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, CategoryActivity.class));
+                startActivity(new Intent(HomeActivity.this, ProductListActivity.class));
             }
         });
     }
